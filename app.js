@@ -8,7 +8,8 @@ var intel = [1, 2, 0, 0, 0];
 var wis = [1, 0, 2, 0, 0];
 var cha = [1, 0, 0, 0, 2];
 var race = document.getElementById('race');
-selectedRace = race.value;
+selectedRace = (race.value).toLowerCase();
+console.log(selectedRace); 
 var playerName = (document.getElementById('playername')).value;
 var characterName = (document.getElementById('charactername').value);
 var gender = (document.getElementById('gender').value);
@@ -30,6 +31,7 @@ function Race(race, str, dex, con, intel, wis, cha){
 Race.allRaces = [];
 
 function Character(){
+  this.race = ''
   Character.allCharacters.push(this);
 }
 Character.allCharacters = [];
@@ -42,11 +44,11 @@ Character.prototype.bio = bio;
 for (var i = 0; i < races.length; i++){
   new Race(races[i], str[i], dex[i], con[i], intel[i], wis[i], cha[i]);
 };
+console.log(Race.allRaces);
 
 for (var i = 0; i < races.length; i++){
-  if (selectedRace == races[i]){
+  if (selectedRace == (races[i]).toLowerCase()){
     var charRace = Race.allRaces[i];
-    break;
   }
 }
 console.log(charRace);
