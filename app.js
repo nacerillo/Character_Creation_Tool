@@ -2,34 +2,107 @@
 
 
 
-var dexMod = document.getElementById('dex-mod');
-var conMod = document.getElementById('const-mod');
+//var dexMod = document.getElementById('dex-mod');
+//var conMod = document.getElementById('const-mod');
 
 /////////////Strength Row Elements////////
-
 //Input
 var strInput = document.getElementById('spinnerSTR');
 //Mod
 var strMod = document.getElementById('str-mod');
-
 //Cost
 var strCost = document.getElementById('str-cost');
 var strRace = document.getElementById('str-rt');
-
 //Actual Points
 var strAp = document.getElementById('str-ap');
 strAp.textContent = strInput.value;
-
 //Actual Mod
 var strAm = document.getElementById('str-am');
 var strAm = strMod.textContent;
+/*
+/////////////Dexterity Row Elements////////
+//Input
+var dexInput = document.getElementById('spinnerDEX');
+//Mod
+var dexMod = document.getElementById('dex-mod');
+//Cost
+var dexCost = document.getElementById('dex-cost');
+var dexRace = document.getElementById('dex-rt');
+//Actual Points
+var dexAp = document.getElementById('dex-ap');
+dexAp.textContent = dexInput.value;
+//Actual Mod
+var dexAm = document.getElementById('dex-am');
+var dexAm = dexMod.textContent;
 
 
+/////////////Constitution Row Elements////////
+//Input
+var conInput = document.getElementById('spinnerCONST');
+//Mod
+var conMod = document.getElementById('const-mod');
+//Cost
+var conCost = document.getElementById('const-cost');
+var conRace = document.getElementById('const-rt');
+//Actual Points
+var conAp = document.getElementById('const-ap');
+conAp.textContent = conInput.value;
+//Actual Mod
+var conAm = document.getElementById('const-am');
+var conAm = conMod.textContent;
+
+
+/////////////Intelligence Row Elements////////
+//Input
+var intInput = document.getElementById('spinnerINT');
+//Mod
+var  intMod = document.getElementById('int-mod');
+//Cost
+var intCost = document.getElementById('int-cost');
+var intRace = document.getElementById('int-rt');
+//Actual Points
+var intAp = document.getElementById('int-ap');
+intAp.textContent = intInput.value;
+
+//Actual Mod
+var intAm = document.getElementById('int-am');
+var intAm = intMod.textContent;
+
+
+/////////////Wisdom Row Elements////////
+//Input
+var wisInput = document.getElementById('spinnerWIS');
+//Mod
+var  wisMod = document.getElementById('wis-mod');
+//Cost
+var wisCost = document.getElementById('wis-cost');
+var wisRace = document.getElementById('wis-rt');
+//Actual Points
+var wisAp = document.getElementById('wis-ap');
+wisAp.textContent = wisInput.value;
+//Actual Mod
+var wisAm = document.getElementById('wis-am');
+var wisAm = wisMod.textContent;
+
+
+/////////////Charisma Row Elements////////
+//Input
+var chaInput = document.getElementById('spinnerCHA');
+//Mod
+var  chaMod = document.getElementById('cha-mod');
+//Cost
+var chaCost = document.getElementById('cha-cost');
+var chaRace = document.getElementById('cha-rt');
+//Actual Points
+var wisAp = document.getElementById('cha-ap');
+wisAp.textContent = wisInput.value;
+//Actual Mod
+var chaAm = document.getElementById('cha-am');
+var chaAm = chaMod.textContent;
+*/
 var RaceMod;
 var abilityMod;
-if (2 < 5){
-console.log("hello");
-}
+
 function handleAbilityInput(event){
 
     //updateRow(strAp,)
