@@ -61,6 +61,7 @@ header .social a:hover {
   display: block;
   margin: 0 auto;
   position: relative;
+  background: url('assets/background-image.png') no-repeat center center;
 }
 
 footer {
