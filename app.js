@@ -25,7 +25,6 @@ var strAm = document.getElementById('str-am');
 var strAm = strMod.textContent;
 
 
-
 var RaceMod;
 var abilityMod;
 if (2 < 5){
