@@ -1,0 +1,138 @@
+.wrapper {
+  width: 960px;
+  display: block;
+}
+
+main, header, footer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  height: 4rem;
+  background-color: #BC4062;
+  color: white;
+}
+
+header .wrapper {
+  height: 4rem;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo-area {
+  display: flex;
+}
+
+header img {
+  margin-right: 1rem;
+  width: 10rem;
+  background-color: white;
+  padding: 0.2rem 0.2rem 0 0.2rem;
+}
+
+header h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  margin-right: 3rem;
+  color: white;
+  background-color: black;
+  padding: 0.5rem;
+}
+
+header .social {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+header .social a {
+  color: black;
+  margin-right: 0.25rem;
+  font-size: 1.5rem;
+}
+
+header .social a:hover {
+  color: white;
+}
+
+.background-sheet {
+  width: 600px;
+  height: 800px;
+  background-color: lightskyblue;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  background: url('assets/character-sheet.png') no-repeat center center;
+  background: url('https://content.instructables.com/ORIG/F32/Y0FV/J8F5Q3W5/F32Y0FVJ8F5Q3W5.png') no-repeat center center;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+
+.background-sheet span {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: tomato;
+  padding: .25rem;
+  position: absolute;
+}
+
+.player-name-sheet {
+  top: 3rem;
+  right: 4rem;
+}
+
+.character-name-sheet {
+  top: 4.3rem;
+  left: 3rem;
+}
+
+.gender-sheet {
+  top: 3rem;
+  right: 12rem;
+}
+
+.avatar-sheet {
+  width: 10rem;
+  position: absolute;
+  top: 25rem;
+  right: 2rem;
+}
+
+.bio-sheet {
+  width: 9rem;
+  top: 9.5rem;
+  right: 2.4rem;
+  font-size: 0.7rem;
+}
+
+footer {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #7E6B7D;
+  color: white;
+  height: 12rem;
+  font-size: 0.9rem;
+}
+
+footer .wrapper {
+  text-align: right;
+  color: white;
+  line-height: 1.25rem;
+}
+
+footer a {
+  color: #EC7B72;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #BC4062;
+}
