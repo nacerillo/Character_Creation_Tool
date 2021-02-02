@@ -19,7 +19,7 @@ strAp.textContent = strInput.value;
 //Actual Mod
 var strAm = document.getElementById('str-am');
 var strAm = strMod.textContent;
-/*
+
 /////////////Dexterity Row Elements////////
 //Input
 var dexInput = document.getElementById('spinnerDEX');
@@ -51,7 +51,7 @@ conAp.textContent = conInput.value;
 var conAm = document.getElementById('const-am');
 var conAm = conMod.textContent;
 
-
+/*
 /////////////Intelligence Row Elements////////
 //Input
 var intInput = document.getElementById('spinnerINT');
@@ -109,12 +109,23 @@ function handleAbilityInput(event){
     var val = this.value;
     console.log(this);
     event.preventDefault();
+    if(this.id = "spinnerSTR"){
     updateRow(val,strMod,strAp,strCost)
+    }
+
+   else if(this.id = "spinnerDEX"){
+        updateRow(val,dexMod,dexAp,dexCost)
+        }
+    else if(this.id = "spinnerCONST"){
+            updateRow(val,constMod,constAp,constCost)
+            }
     
 }
 
 function updateRow(v, mod,ap,cost){
-    ap.textContent = this.value; // this.value + Racial Bonus
+
+
+    ap.textContent = v; // this.value + Racial Bonus
      console.log(v);
     // console.log(strCost.textContent);
      //console.log(this.value == 12);
@@ -176,7 +187,7 @@ function updateRow(v, mod,ap,cost){
      }
 
      else if(this.value == 18 || this.value == 19){
-       // strMod.textContent = 4;
+        mod.textContent = 4;
         //update character class with updated Mod
      }
     // strMod.textContent = this.value;
