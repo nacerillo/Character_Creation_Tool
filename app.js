@@ -9,14 +9,26 @@ var wis = [1, 0, 2, 0, 0];
 var cha = [1, 0, 0, 0, 2];
 //end of variables for race constructor
 var race = document.getElementById('race');
-selectedRace = (race.value).toLowerCase();
+var selectedRace = (race.value).toLowerCase();
 console.log(selectedRace); 
 var playerName = (document.getElementById('playername')).value;
+console.log(playerName);
 var characterName = (document.getElementById('charactername').value);
 var gender = (document.getElementById('gender').value);
 var avatar = (document.getElementById('avatar').value);
 var bio = (document.getElementById('bio').value);
+var humanTableElement = document.getElementById('human');
+var elfTableElement = document.getElementById('elf');
+var dwarfTableElement = document.getElementById('dwarf');
+var orcTableElement = document.getElementById('orc');
+var halflingTableElement = document.getElementById('halfling');
+var tableElementArray = [humanTableElement, elfTableElement, dwarfTableElement, orcTableElement, halflingTableElement];
+var submitButton = document.getElementById('submit');
 
+function Player(playerName){
+  this.playerName = playerName;
+  this.characters = [];
+}
 
 
 function Race(race, str, dex, con, intel, wis, cha){
@@ -31,13 +43,19 @@ function Race(race, str, dex, con, intel, wis, cha){
 };
 Race.allRaces = [];
 
-function Character(cName, race, gender, avatar, bio){
+function Character(cName, race, gender, avatar, bio, stats){
   this.name = cName;
   this.race = race;
   this.gender = gender;
   this.avatar = avatar;
   this.bio = bio;
-  this.stats = [];
+  this.stats = stats;
+  // this.strength = stats[0];
+  // this.dexterity = stats[1];
+  // this.constitution = stats[2];
+  // this.intelligence = stats[3];
+  // this.wisdom = stats[4];
+  // this.charisma = stats[5];
   Character.allCharacters.push(this);
 }
 Character.allCharacters = [];
@@ -50,14 +68,11 @@ for (var i = 0; i < races.length; i++){
 };
 console.log(Race.allRaces);
 
-for (var i = 0; i < races.length; i++){
-  if (selectedRace == (races[i]).toLowerCase()){
-    var charRace = Race.allRaces[i];
+for (var i = 0; i < races.length; i ++){
+  if (selectedRace == tableElementArray[i].id){
+    tableElementArray[i].className = 'active';
   }
 }
-console.log(charRace);
-var userChar = new Character(characterName, charRace, gender, avatar, bio);
-console.log(userChar);
 
 function getStats(){
   var str = (document.getElementById('spinnerSTR').value);
@@ -66,5 +81,23 @@ function getStats(){
   var intel = (document.getElementById('spinnerINT').value);
   var wis = (document.getElementById('spinnerWIS').value);
   var cha = (document.getElementById('spinnerCHAR').value);
-  return [str, dex, con, intel, wis, cha];
+  var stats = [str, dex, con, intel, wis, cha];
+  return stats;
 }
+
+function eventListenerSubmitButton(event){
+  event.preventDefault();
+  for (var i = 0; i < races.length; i++){
+    if (selectedRace == (races[i]).toLowerCase()){
+      var charRace = Race.allRaces[i];
+    }
+  }
+  console.log(charRace);
+  var player = new Player(playerName)
+  var stats = getStats();
+  console.log(stats);
+  var userChar = new Character(characterName, charRace, gender, avatar, bio, stats);
+  player.characters.push(userChar);
+  console.log(player);
+}
+submitButton.addEventListener('click', eventListenerSubmitButton);
