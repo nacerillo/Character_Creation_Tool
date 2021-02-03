@@ -1,45 +1,54 @@
-
-
 'use strict'
 //start of variables for race constructor
 var races = ['Human', 'Elf', 'Dwarf', 'Orc', 'Halfling'];
 var str = [1, 0, 0, 0, 0];
 var dex = [1, 2, 0, 2, 2];
 var con = [1, 0, 2, 2, 0];
-var intel = [1, 2, 0, 0, 0];
+var int = [1, 2, 0, 0, 0];
 var wis = [1, 0, 2, 0, 0];
 var cha = [1, 0, 0, 0, 2];
 //end of variables for race constructor
 var race = document.getElementById('race');
 var selectedRace = (race.value).toLowerCase();
-console.log(selectedRace); 
-var playerName = (document.getElementById('playername')).value;
-console.log(playerName);
-var characterName = (document.getElementById('charactername').value);
+var playerName = document.getElementById('playername');
+var characterName = document.getElementById('charactername');
 var gender = (document.getElementById('gender').value);
 var avatar = (document.getElementById('avatar').value);
 var bio = (document.getElementById('bio').value);
-var raceStrElement = document.getElementById('str-rt');
-var raceDexElement = document.getElementById('dex-rt');
-var raceConElement = document.getElementById('const-rt');
-var raceIntelElement = document.getElementById('int-rt');
-var raceWisElement = document.getElementById('wis-rt');
-var raceChaElement = document.getElementById('char-rt');
+var strRace = document.getElementById('str-rt');
+var dexRace = document.getElementById('dex-rt');
+var conRace = document.getElementById('const-rt');
+var intRace = document.getElementById('int-rt');
+var wisRace = document.getElementById('wis-rt');
+var chaRace = document.getElementById('char-rt');
+var strAp = document.getElementById('str-ap');
+var dexAp = document.getElementById('dex-ap');
+var conAp = document.getElementById('const-ap');
+var intAp = document.getElementById('int-ap');
+var wisAp = document.getElementById('wis-ap');
+var chaAp = document.getElementById('char-ap');
+var strInput = document.getElementById('spinnerSTR');
+var dexInput = document.getElementById('spinnerDEX');
+var conInput = document.getElementById('spinnerCONST');
+var intInput = document.getElementById('spinnerINT');
+var wisInput = document.getElementById('spinnerWIS');
+var chaInput = document.getElementById('spinnerCHAR');
 
+// var pointsAvailable = document.getElementById('points-available');
+// var pointsAvailable = updatePointsAvailable() || 20;
 var submitButton = document.getElementById('submit');
-
 
 function Player(playerName){
   this.playerName = playerName;
   this.characters = [];
 }
 
-function Race(race, str, dex, con, intel, wis, cha){
+function Race(race, str, dex, con, int, wis, cha){
   this.race = race;
   this.str = str;
   this.dex = dex;
   this.con = con;
-  this.intel = intel;
+  this.int = int;
   this.wis = wis;
   this.cha = cha;
   Race.allRaces.push(this);
@@ -58,46 +67,57 @@ function Character(cName, race, gender, avatar, bio, stats){
 Character.allCharacters = [];
 
 for (var i = 0; i < races.length; i++){
-  new Race(races[i], str[i], dex[i], con[i], intel[i], wis[i], cha[i]);
+  new Race(races[i], str[i], dex[i], con[i], int[i], wis[i], cha[i]);
 };
 console.log(Race.allRaces);
 
 //below is to initialize a value on the table when the page is loaded
 for (var i = 0; i < races.length; i ++){
   if (selectedRace == races[i].toLowerCase()){
-    raceStrElement.textContent = str[i];
-    raceDexElement.textContent = dex[i];
-    raceConElement.textContent = con[i];
-    raceIntelElement.textContent = intel[i];
-    raceWisElement.textContent = wis[i];
-    raceChaElement.textContent = cha[i];
+    strRace.textContent = str[i];
+    dexRace.textContent = dex[i];
+    conRace.textContent = con[i];
+    intRace.textContent = int[i];
+    wisRace.textContent = wis[i];
+    chaRace.textContent = cha[i];
   }
 }
+updateActualPoints();
 function forRaceListener(event){
   event.preventDefault();
   selectedRace = event.target.value;
   console.log(selectedRace);
   for (var i = 0; i < races.length; i ++){
     if (selectedRace == races[i].toLowerCase()){
-      raceStrElement.textContent = str[i];
-      raceDexElement.textContent = dex[i];
-      raceConElement.textContent = con[i];
-      raceIntelElement.textContent = intel[i];
-      raceWisElement.textContent = wis[i];
-      raceChaElement.textContent = cha[i];
+      strRace.textContent = str[i];
+      dexRace.textContent = dex[i];
+      conRace.textContent = con[i];
+      intRace.textContent = int[i];
+      wisRace.textContent = wis[i];
+      chaRace.textContent = cha[i];
     }
   }
+  updateActualPoints();
 }
-race.addEventListener('change', forRaceListener);
+race.addEventListener('click', forRaceListener);
+
+function updateActualPoints(){
+  strAp.textContent = parseInt(strInput.value) + parseInt(chaRace.textContent);
+  dexAp.textContent = parseInt(dexInput.value) + parseInt(dexRace.textContent);
+  conAp.textContent = parseInt(conInput.value) + parseInt(conRace.textContent);
+  intAp.textContent = parseInt(intInput.value) + parseInt(intRace.textContent);
+  wisAp.textContent = parseInt(wisInput.value) + parseInt(wisRace.textContent);
+  chaAp.textContent = parseInt(chaInput.value) + parseInt(chaRace.textContent);
+}
 
 function getStats(){
-  var str = (document.getElementById('spinnerSTR').value);
-  var dex = (document.getElementById('spinnerDEX').value);
-  var con = (document.getElementById('spinnerCONST').value);
-  var intel = (document.getElementById('spinnerINT').value);
-  var wis = (document.getElementById('spinnerWIS').value);
-  var cha = (document.getElementById('spinnerCHAR').value);
-  var stats = [str, dex, con, intel, wis, cha];
+  var str = parseInt(strAp.textContent);
+  var dex = parseInt(dexAp.textContent);
+  var con = parseInt(conAp.textContent);
+  var int = parseInt(intAp.textContent);
+  var wis = parseInt(wisAp.textContent);
+  var cha = parseInt(chaAp.textContent);
+  var stats = [str, dex, con, int, wis, cha];
   return stats;
 }
 
@@ -109,20 +129,16 @@ function eventListenerSubmitButton(event){
     }
   }
   console.log(charRace);
-  var player = new Player(playerName)
+  var player = new Player(playerName.value)
   var stats = getStats();
   console.log(stats);
-  var userChar = new Character(characterName, charRace, gender, avatar, bio, stats);
+  var userChar = new Character(characterName.value, charRace, gender, avatar, bio, stats);
   player.characters.push(userChar);
   console.log(player);
 }
 submitButton.addEventListener('click', eventListenerSubmitButton);
 
 
-
-
-//var dexMod = document.getElementById('dex-mod');
-//var conMod = document.getElementById('const-mod');
 
 /////////////Strength Row Elements////////
 //Input
@@ -203,7 +219,7 @@ var wisAp = document.getElementById('wis-ap');
 wisAp.textContent = wisInput.value;
 //Actual Mod
 var wisAm = document.getElementById('wis-am');
-var wisAm = wisMod.textContent;
+wisAm.t = wisMod.textContent;
 
 
 /////////////Charisma Row Elements////////
@@ -226,120 +242,97 @@ var abilityMod;
 
 var currStr;
 var currDex;
+function updateActualMod(){
+  // strAm.textContent = strMod.textContent; //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
+  dexAm.textContent = parseInt(dexMod.textContent);
+  // conAm = parseInt(conMod.textContent);
+  // intAm = parseInt(intMod.textContent);
+  // wisAm = parseInt(wisMod.textContent);
+  // chaAm = parseInt(chaMod.textContent);
+}
 function handleAbilityInput(event){
-    //updateRow(strAp,)
-    event.preventDefault();
-    var val = event.target.value;
-    console.log(val);
-    console.log(event.target.id);
-    
-    if(event.target.id === "spinnerSTR"){
-        updateRow(val,strMod,strAp,strCost)
-        
-    }
-
-    else if(event.target.id === "spinnerDEX"){
-        updateRow(val,dexMod,dexAp,dexCost)
-    }
-
-    else if(event.target.id === "spinnerCONST"){
-        updateRow(val,constMod,constAp,constCost)
-    }
-
-    else if(event.target.id === "spinnerINT"){
-        updateRow(val,intMod,intAp,intCost)
-    }
-
-    else if(event.target.id === "spinnerWIS"){
-        updateRow(val,wisMod,wisAp,wisCost)
-    }
-
-    else{
-         updateRow(val,chaMod,chaAp,chaCost)
-    }
-    
+  event.preventDefault();
+  var val = event.target.value;
+  if(event.target.id === "spinnerSTR"){
+    updateRow(val,strMod,strAp,strCost);
+    updateActualMod();
+  }
+  else if(event.target.id === "spinnerDEX"){
+    updateRow(val,dexMod,dexAp,dexCost);
+    updateActualMod();
+  }
+  else if(event.target.id === "spinnerCONST"){
+    updateRow(val,conMod,conAp,conCost)
+  }
+  else if(event.target.id === "spinnerINT"){
+    updateRow(val,intMod,intAp,intCost)
+  }
+  else if(event.target.id === "spinnerWIS"){
+    updateRow(val,wisMod,wisAp,wisCost)
+  }
+  else{
+    updateRow(val,chaMod,chaAp,chaCost)
+  }
 }
 
-function updateRow(v, mod,ap,cost){
-
-
-    ap.textContent = v; // this.value + Racial Bonus
-     //console.log(v);
-    // console.log(strCost.textContent);
-     //console.log(this.value == 12);
-
-    if(v == 8 || v == 9){
-        mod.textContent = -1;
-        //TotalPoints -= 2;
-        if(v == 8){
-            cost.textContent = -2;
-           
-        }
-        if(v == 9){
-            cost.textContent = -1;
-        }
-       // pointsSpent -= 1;
+function updateRow(v, mod, ap, cost){
+  ap.textContent = v;
+  if(v == 8 || v == 9){
+    mod.textContent = -1;
+      if(v == 8){
+        cost.textContent = -2;
+      }
+      if(v == 9){
+        cost.textContent = -1;
+      }
     }
-
-    else if(v== 10 || v== 11){
-    
-         mod.textContent = 0;
-         if(v == 10){
-             cost.textContent = 0;
-         }
-         if(v == 11){
-             cost.textContent = 1;
-            // console.log(cost.textContent);
-         }
-         //pointsSpent += 0;
-         //update character class with updatedMod
+  else if(v== 10 || v== 11){
+      mod.textContent = 0;
+        if(v == 10){
+          cost.textContent = 0;
+        }
+        if(v == 11){
+          cost.textContent = 1;
+        }
      }
-     else if(v == 12 || v == 13){
-        mod.textContent = 1;
-         if(v == 12){
-            cost.textContent = 2;
+  else if(v == 12 || v == 13){
+      mod.textContent = 1;
+        if(v == 12){
+          cost.textContent = 2;
         }
         if(v == 13){
-            cost.textContent = 3;
+          cost.textContent = 3;
         }
-
-         //update character class with updated Mod
      }
-     else if(v == 14 || v == 15){
-        mod.textContent = 2;
+  else if(v == 14 || v == 15){
+      mod.textContent = 2;
         if(v == 14){
-            cost.textContent = 5;
+          cost.textContent = 5;
         }
         if(v == 15){
-            cost.textContent = 7;
+          cost.textContent = 7;
         }
-        //update character class with updated Mod
      }
-     else if(v == 16 ||v == 17){
-         mod.textContent = 3;
+  else if(v == 16 ||v == 17){
+        mod.textContent = 3;
          if(v == 16){
-            cost.textContent = 10;
+          cost.textContent = 10;
         }
         if(v == 17){
             cost.textContent = 13;
         }
-         //update character class with updated Mod 
      }
-
-     else if(v == 18 || v == 19){
-        mod.textContent = 4;
-        //update character class with updated Mod
+  else if(v == 18 || v == 19){
+      mod.textContent = 4;
      }
-    // strMod.textContent = this.value;
-     //console.log(cost);
-    // strMod.value = this.value;
-    updatePointsAvailable();
+  updatePointsAvailable();
+  updateActualPoints();
 }
 
 function updatePointsAvailable(){
     var spent  = parseInt(strCost.textContent) + parseInt(dexCost.textContent) + parseInt(conCost.textContent) + parseInt(intCost.textContent) + parseInt(wisCost.textContent) + parseInt(chaCost.textContent);
     TotalPoints = 20 - spent; 
-    console.log(TotalPoints);
+    return TotalPoints;
 }
 
 dexInput.addEventListener('input',handleAbilityInput);
