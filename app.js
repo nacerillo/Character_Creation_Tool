@@ -53,9 +53,9 @@ var pointsAvail = document.getElementById('points-available');
 // var pointsAvailable = updatePointsAvailable() || 20;
 var submitButton = document.getElementById('submit');
 
-function Player(playerName){
+function Player(playerName, characters){
   this.playerName = playerName;
-  this.characters = [];
+  this.characters = characters || [];
 }
 
 function Race(race, str, dex, con, int, wis, cha){
@@ -150,6 +150,8 @@ function eventListenerSubmitButton(event){
   var userChar = new Character(characterName.value, charRace, gender, avatar, bio, stats);
   player.characters.push(userChar);
   console.log(player);
+  var stringObject = JSON.stringify(player);
+  localStorage.setItem('player', stringObject);
 }
 submitButton.addEventListener('click', eventListenerSubmitButton);
 
@@ -268,6 +270,7 @@ function updateActualMod(){
   wisAm.textContent = modMap.get(parseInt(wisAp.textContent)); //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
   chaAm.textContent = modMap.get(parseInt(chaAp.textContent));
 }
+
 function handleAbilityInput(event){
   event.preventDefault();
   var val = event.target.value;
