@@ -20,16 +20,11 @@
     <header>
       <div class="wrapper">
         <div class="logo-area">
-          <img
-            src="assets/logo.png"
-            alt="The logo for Character Creator"
-            class="logo"
-          />
           <h1>Character Creator</h1>
         </div>
         <nav>
           <a href="index.html">Home</a>
-          <a href="">Character Sheet</a>
+          <a href="index2.html">Character Sheet</a>
         </nav>
         <div class="social">
           <a href="#"><i class="fab fa-facebook-square"></i></a>
@@ -42,12 +37,24 @@
     <main>
       <div class="wrapper">
         <div class="background-sheet">
+          <div class="player-picker">
+            <label for="player-pick">Pick your Player:</label>
+            <select id="player-pick" name="player-pick">
+              <option value="player-pick">Xxxx</option>
+            </select>
+            <label for="class">Pick your Player's Character:</label>
+            <select id="player-char" name="player-char">
+              <option value="player-char">Xxxx</option>
+            </select>
+          </div>
           <span class="player-name-sheet" id="player-name-sheet"
             >Xxxx Xxxxxx</span
           >
           <span class="character-name-sheet" id="character-name-sheet"
             >Xxxx Xxxxx</span
           >
+          <span class="class-sheet" id="class-sheet">Wizard</span>
+          <span class="race-sheet" id="race-sheet">Human</span>
           <span class="gender-sheet" id="gender-sheet">Male</span>
           <img
             class="avatar-sheet"
@@ -73,9 +80,9 @@
     <!-- footer section -->
     <footer>
       <div class="wrapper">
-        <h4>Made by</h4>
         <p>icons from <a href="https://fontawesome.com/">Font Awesome</a></p>
       </div>
     </footer>
+    <script src="app2.js"></script>
   </body>
 </html>

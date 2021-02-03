@@ -40,9 +40,37 @@ header h1 {
   font-family: 'New Rocker', cursive;
   font-size: 2rem;
   margin-right: 3rem;
-  color: white;
-  background-color: black;
+  color: black;
   padding: 0.5rem;
+}
+
+nav {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: center;
+  font-size: 1.25rem;
+}
+
+nav a {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-right: 3rem;
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem;
+}
+nav a:hover {
+  color: #EC7B72;
+  background-color: black;
+}
+
+a {
+  color: #BC4062;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #EC7B72;
 }
 
 header .social {
@@ -121,12 +149,16 @@ table td.points {
   width: 8rem;
 }
 
+#submit {
+  width: 5rem;
+}
+
 .background-sheet {
   width: 600px;
   height: 800px;
   background-color: lightskyblue;
   display: block;
-  margin: 0 auto;
+  margin: 2rem auto;
   position: relative;
   background: url('assets/character-sheet.png') no-repeat center center;
   background: url('https://content.instructables.com/ORIG/F32/Y0FV/J8F5Q3W5/F32Y0FVJ8F5Q3W5.png') no-repeat center center;
@@ -136,9 +168,13 @@ table td.points {
   background-size: contain;
 }
 
+.player-picker {
+  margin: 1rem 0 2rem 0;
+}
+
 .background-sheet span {
   font-family: 'Shadows Into Light', cursive;
-  background-color: tomato;
+  background-color: white;
   padding: .25rem;
   position: absolute;
 }
@@ -171,6 +207,17 @@ table td.points {
   right: 2.4rem;
   font-size: 0.7rem;
 }
+
+.race-sheet {
+  top: 4.6rem;
+  right: 17rem;
+}
+
+.class-sheet {
+  top: 3rem;
+  right: 17rem;
+}
+
 .gender-sheet {
   top: 3rem;
   right: 12rem;

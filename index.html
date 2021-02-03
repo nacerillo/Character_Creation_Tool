@@ -16,7 +16,6 @@
   <header>
     <div class="wrapper">
       <div class="logo-area">
-        <img src="assets/logo.png" alt="The logo for Character Creator" class="logo">
         <h1>Character Creator</h1>
       </div>
       <nav>
@@ -72,6 +71,17 @@
                   <option value="female">Female</option>
                   <!-- pick a random default picture -->
                   <!-- <option value="other">Other</option> -->
+                </select>
+              </li>
+              <li>
+                <label for="class">Pick a Class:</label>
+                <select id="class" name="class">
+                  <option value="Fighter">Fighter</option>
+                  <option value="Ranger">Ranger</option>
+                  <option value="Druid">Druid</option>
+                  <option value="Cleric">Cleric</option>
+                  <option value="Wizard">Wizard</option>
+                  <option value="Rogue">Rogue</option>
                 </select>
               </li>
               <li>
@@ -239,7 +249,7 @@
             </table>
 
             <input type="submit" id="submit" value="Submit">
-            <div id="points-available"></div>
+            <span id="points-available">20</span>
 
           </form>
         </div>
