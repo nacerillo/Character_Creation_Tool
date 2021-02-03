@@ -37,7 +37,7 @@ header img {
 }
 
 header h1 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Almendra Display', cursive;
   font-size: 2rem;
   margin-right: 3rem;
   color: white;
@@ -113,7 +113,54 @@ header .social a:hover {
   right: 2.4rem;
   font-size: 0.7rem;
 }
+.gender-sheet {
+  top: 3rem;
+  right: 12rem;
+}
 
+.avatar-sheet {
+  width: 10rem;
+  position: absolute;
+  top: 25rem;
+  right: 2rem;
+}
+
+.bio-sheet {
+  width: 9rem;
+  top: 9.5rem;
+  right: 2.4rem;
+  font-size: 0.7rem;
+}
+.str-sheet {
+  position:absolute;
+  top: 10.25rem;
+  right: 33.2rem;
+}
+.dex-sheet {
+  position:absolute;
+  top: 14.7rem;
+  right: 33.2rem;
+}
+.con-sheet {
+  position:absolute;
+  top: 19rem;
+  right: 33.2rem;
+}
+.int-sheet {
+  position:absolute;
+  top: 23.46rem;
+  right: 33.2rem;
+}
+.wis-sheet {
+  position:absolute;
+  top: 27.8rem;
+  right: 33.2rem;
+}
+.cha-sheet {
+  position:absolute;
+  top: 32.2rem;
+  right: 33.2rem;
+}
 footer {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #7E6B7D;
