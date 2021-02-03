@@ -4,19 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Almendra+Display&display=swap" rel="stylesheet">
+
   <script src="https://kit.fontawesome.com/3d57454b78.js" crossorigin="anonymous"></script>
-  <!-- <link rel="stylesheet" href="css/reset.css" /> -->
-  <!-- <link rel="stylesheet" href="css/style.css" /> -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <!-- navigation section -->
   <header>
     <div class="wrapper">
-      <img src="" alt="The logo for Character Creator" class="logo">
-      <h1>Team</h1>
+      <div class="logo-area">
+        <img src="assets/logo.png" alt="The logo for Character Creator" class="logo">
+        <h1>Character Creator</h1>
+      </div>
       <nav>
-        <a href="">Home</a>
-        <a href="">Character Sheet</a>
+        <a href="index.html">Home</a>
+        <a href="index2.html">Character Sheet</a>
       </nav>
       <div class="social">
         <a href="#"><i class="fab fa-facebook-square"></i></a>
@@ -29,7 +34,7 @@
   <!-- body section -->
   <main>
     <div class="wrapper">
-      <img src="" alt="" class="hero-img">
+      <img src="assets/hero.jpg" alt="" class="hero-img">
       <div class="social">
         <a href="#"><i class="fab fa-facebook-square"></i></a>
         <a href="#"><i class="fab fa-instagram-square"></i></a>
@@ -75,12 +80,15 @@
               </li>
               <li> 
                 <label for="bio">Write your character's bio:</label>
-                <textarea name="bio" rows="10" cols="30" id="bio">Write your bio here.</textarea> // Added id bio for Zach to target
+                <textarea name="bio" rows="10" cols="30" id="bio">Write your bio here.</textarea> 
+                <!-- Added id bio for Zach to target -->
               </li>
             </ul>
           <!-- based on the picked race from the dropdown it shows this form -->
           
-            <!-- Race Ability Table -->
+
+            <!-- HUMAN -->
+
             <table class="table" id="table">
               <tbody>
                 <!-- header -->
@@ -106,7 +114,7 @@
                     <span class="str-cost" id = "str-cost">0</span>
                   </td>
                   <td class="racial-traits">
-                    <span class="str-rt" id = "str-rt">0</span>
+                    <span id="str-rt">0</span>
                   </td>
                   <td class="actual-points">
                     <span class="str-ap" id = "str-ap">0</span>
@@ -128,13 +136,13 @@
                     <span class="dex-cost" id ="dex-cost">0</span>
                   </td>
                   <td class="racial-traits">
-                    <span class="dex-rt" id = "dex-rt">0</span>
+                    <span class="dex-rt" id="dex-rt">0</span>
                   </td>
                   <td class="actual-points">
-                    <span class="dex-ap" id = "dex-ap">0</span>
+                    <span class="dex-ap" id="dex-ap">0</span>
                   </td>
                   <td class="actual-mod">
-                    <span class="dex-am" id = "dex-am">0</span>
+                    <span class="dex-am" id="dex-am">0</span>
                   </td>
                 </tr>
                 <!-- const row -->
@@ -150,7 +158,9 @@
                     <span class="const-cost" id = "const-cost">0</span>
                   </td>
                   <td class="racial-traits">
-                    <span class="const-rt" id = "const-rt">0</span>
+
+                    <span id="const-rt">0</span>
+
                   </td>
                   <td class="actual-points">
                     <span class="const-ap" id = "const-ap">0</span>
@@ -172,7 +182,7 @@
                     <span class="int-cost" id = "int-cost">0</span>
                   </td>
                   <td class="racial-traits">
-                    <span class="int-rt" id = "int-rt">0</span>
+                    <span id="int-rt">0</span>
                   </td>
                   <td class="actual-points">
                     <span class="int-ap" id = "int-ap">0</span>
@@ -194,7 +204,7 @@
                     <span class="wis-cost" id = "wis-cost">0</span>
                   </td>
                   <td class="racial-traits">
-                    <span class="wis-rt" id = "wis-rt">0</span>
+                    <span id="wis-rt">0</span>
                   </td>
                   <td class="actual-points">
                     <span class="wis-ap" id = "wis-ap">0</span>
@@ -216,7 +226,7 @@
                     <span class="char-cost" id = "char-cost">0</span>
                   </td>
                   <td class="racial-traits">
-                    <span class="char-rt" id = "char-rt">0</span>
+                    <span id="char-rt">0</span>
                   </td>
                   <td class="actual-points">
                     <span class="char-ap" id = "char-ap">0</span>
@@ -228,7 +238,7 @@
               </tbody>
             </table>
 
-            <input type="submit" value="Submit">
+            <input type="submit" id="submit" value="Submit">
 
           </form>
         </div>
