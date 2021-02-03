@@ -174,9 +174,10 @@ table td.points {
 
 .background-sheet span {
   font-family: 'Shadows Into Light', cursive;
-  background-color: white;
+  background-color: #dedede;
   padding: .25rem;
   position: absolute;
+  border-radius: 2px;
 }
 
 .player-name-sheet {
@@ -239,32 +240,38 @@ table td.points {
 .str-sheet {
   position:absolute;
   top: 10.25rem;
-  right: 33.2rem;
+  right: 33.5rem;
+  font-size: 1.37rem;
 }
 .dex-sheet {
   position:absolute;
   top: 14.7rem;
-  right: 33.2rem;
+  right: 33.5rem;
+  font-size: 1.37rem;
 }
 .con-sheet {
   position:absolute;
   top: 19rem;
-  right: 33.2rem;
+  right: 33.5rem;
+  font-size: 1.37rem;
 }
 .int-sheet {
   position:absolute;
   top: 23.46rem;
-  right: 33.2rem;
+  right: 33.5rem;
+  font-size: 1.37rem;
 }
 .wis-sheet {
   position:absolute;
   top: 27.8rem;
-  right: 33.2rem;
+  right: 33.5rem;
+  font-size: 1.37rem;
 }
 .cha-sheet {
   position:absolute;
   top: 32.2rem;
-  right: 33.2rem;
+  right: 33.5rem;
+  font-size: 1.37rem;
 }
 footer {
   font-family: Arial, Helvetica, sans-serif;
