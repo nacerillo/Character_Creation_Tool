@@ -9,6 +9,7 @@ var characterNameSheet = document.getElementById('character-name-sheet');
 var playerNameSheet = document.getElementById('player-name-sheet');
 var genderSheet = document.getElementById('gender-sheet');
 var bioSheet = document.getElementById('bio-sheet');
+var 
 
 
 
@@ -32,6 +33,7 @@ function updateFields(){
   playerNameSheet.textContent = playerInfo.playerName;
   genderSheet.textContent = playerInfo.characters[0].gender;
   bioSheet.textContent = playerInfo.characters[0].bio;
+
   return playerInfo;
 }
 updateFields();

@@ -1,7 +1,9 @@
 'use strict'
 //start of variables for race constructor
 var races = ['Human', 'Elf', 'Dwarf', 'Orc', 'Halfling'];
-var modMap = new Map()
+var classes = ['Fighter', 'Ranger', 'Druid', 'Cleric', 'Wizard', 'Rogue'];
+var hp = [10, 10, 8, 8, 6, 8];
+var modMap = new Map();
 modMap.set(8,-1);
 modMap.set(9,-1);
 modMap.set(10,0);
@@ -25,6 +27,8 @@ var cha = [1, 0, 0, 0, 2];
 //end of variables for race constructor
 var race = document.getElementById('race');
 var selectedRace = (race.value).toLowerCase();
+var classElement = document.getElementById('class');
+var selectedClass = (classElement.value);
 var playerName = document.getElementById('playername');
 var characterName = document.getElementById('charactername');
 var gender = (document.getElementById('gender').value);
@@ -58,6 +62,13 @@ function Player(playerName, characters){
   this.characters = characters || [];
 }
 
+function Class(c, h){
+  this.class = c;
+  this.hp = h;
+  Class.allClasses.push(this);
+};
+Class.allClasses = [];
+
 function Race(race, str, dex, con, int, wis, cha){
   this.race = race;
   this.str = str;
@@ -70,9 +81,10 @@ function Race(race, str, dex, con, int, wis, cha){
 };
 Race.allRaces = [];
 
-function Character(cName, race, gender, avatar, bio, stats){
+function Character(cName, race, c, gender, avatar, bio, stats){
   this.name = cName;
   this.race = race;
+  this.class = c;
   this.gender = gender;
   this.avatar = avatar;
   this.bio = bio;
@@ -84,7 +96,10 @@ Character.allCharacters = [];
 for (var i = 0; i < races.length; i++){
   new Race(races[i], str[i], dex[i], con[i], int[i], wis[i], cha[i]);
 };
-console.log(Race.allRaces);
+
+for (var i = 0; i < classes.length; i++){
+  new Class(classes[i], hp[i]);
+}
 
 //below is to initialize a value on the table when the page is loaded
 for (var i = 0; i < races.length; i ++){
@@ -98,10 +113,15 @@ for (var i = 0; i < races.length; i ++){
   }
 }
 updateActualPoints();
+
+function forClassListener(event){
+  event.preventDefault();
+  selectedClass = event.target.value;
+}
+
 function forRaceListener(event){
   event.preventDefault();
   selectedRace = event.target.value;
-  console.log(selectedRace);
   for (var i = 0; i < races.length; i ++){
     if (selectedRace == races[i].toLowerCase()){
       strRace.textContent = str[i];
@@ -114,6 +134,7 @@ function forRaceListener(event){
   }
   updateActualPoints();
 }
+classElement.addEventListener('click', forClassListener);
 race.addEventListener('click', forRaceListener);
 
 function updateActualPoints(){
@@ -143,13 +164,15 @@ function eventListenerSubmitButton(event){
       var charRace = Race.allRaces[i];
     }
   }
-  console.log(charRace);
+  for (var i = 0; i < classes.length; i ++){
+    if (selectedClass == classes[i]){
+      var charClass = Class.allClasses[i];
+    }
+  }
   var player = new Player(playerName.value)
   var stats = getStats();
-  console.log(stats);
-  var userChar = new Character(characterName.value, charRace, gender, avatar, bio, stats);
+  var userChar = new Character(characterName.value, charRace, charClass, gender, avatar, bio, stats);
   player.characters.push(userChar);
-  console.log(player);
   var stringObject = JSON.stringify(player);
   localStorage.setItem('player', stringObject);
 }
