@@ -1,1179 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script
-      src="https://kit.fontawesome.com/3d57454b78.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- <link rel="stylesheet" href="css/reset.css" /> -->
-    <!-- <link rel="stylesheet" href="css/style.css" /> -->
-  </head>
-  <body>
-    <!-- navigation section -->
-    <header>
-      <div class="wrapper">
-        <img src="" alt="The logo for Character Creator" class="logo" />
-        <h1>Team</h1>
-        <nav>
-          <a href="">Home</a>
-          <a href="">Character Sheet</a>
-        </nav>
-        <div class="social">
-          <a href="#"><i class="fab fa-facebook-square"></i></a>
-          <a href="#"><i class="fab fa-instagram-square"></i></a>
-          <a href="#"><i class="fas fa-envelope-square"></i></a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://kit.fontawesome.com/3d57454b78.js" crossorigin="anonymous"></script>
+  <!-- <link rel="stylesheet" href="css/reset.css" /> -->
+  <!-- <link rel="stylesheet" href="css/style.css" /> -->
+</head>
+<body>
+  <!-- navigation section -->
+  <header>
+    <div class="wrapper">
+      <img src="" alt="The logo for Character Creator" class="logo">
+      <h1>Team</h1>
+      <nav>
+        <a href="">Home</a>
+        <a href="">Character Sheet</a>
+      </nav>
+      <div class="social">
+        <a href="#"><i class="fab fa-facebook-square"></i></a>
+        <a href="#"><i class="fab fa-instagram-square"></i></a>
+        <a href="#"><i class="fas fa-envelope-square"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- body section -->
+  <main>
+    <div class="wrapper">
+      <img src="" alt="" class="hero-img">
+      <div class="social">
+        <a href="#"><i class="fab fa-facebook-square"></i></a>
+        <a href="#"><i class="fab fa-instagram-square"></i></a>
+        <a href="#"><i class="fas fa-envelope-square"></i></a>
+      </div>
+
+      <div class="character-creation">
+        <!-- the dropdown list of races -->
+        <div>
+          <label for="race">Choose your race:</label>
+          <select id="race" name="race">
+            <option value="human">Human</option>
+            <option value="elf">Elf</option>
+            <option value="dwarf">Dwarf</option>
+            <option value="orc">Orc</option>
+            <option value="halfling">Halfling</option>
+          </select> 
+        </div>
+
+        <div>
+          <form>
+            <ul>
+              <li>
+                <label for="playername">Player name:</label>
+                <input type="text" id="playername" name="playername"> 
+              </li>
+              <li>
+                <label for="charactername">Character name:</label>
+                <input type="text" id="charactername" name="charactername"> 
+              </li>
+              <li>
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <!-- pick a random default picture -->
+                  <!-- <option value="other">Other</option> -->
+                </select>
+              </li>
+              <li>
+                <label for="avatar">Upload an avatar picture:</label>
+                <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg, image/jpg">
+              </li>
+              <li> 
+                <label for="bio">Write your character's bio:</label>
+                <textarea name="bio" rows="10" cols="30" id="bio">Write your bio here.</textarea> // Added id bio for Zach to target
+              </li>
+            </ul>
+          <!-- based on the picked race from the dropdown it shows this form -->
+          
+            <!-- Race Ability Table -->
+            <table class="table" id="table">
+              <tbody>
+                <!-- header -->
+                <tr>
+                  <th>Ability</th>
+                  <th>Points</th>
+                  <th>Mod</th>
+                  <th>Cost</th>
+                  <th>Racisl Traits</th>
+                  <th>Actual Points</th>
+                  <th>Actual Mod</th>
+                </tr>
+                <!-- str row -->
+                <tr class="strength-row">
+                  <td class="ability">Strength</td>
+                  <td class="points">
+                    <input class="spinner" id="spinnerSTR" name="value" aria-valuemin="7" aria-valuemax="18" autocomplete="off" role="spinbutton" aria-valuenow="11" value="10" type="number">
+                  </td>
+                  <td class="mod">
+                    <span id="str-mod">0</span>
+                  </td>
+                  <td class="cost">
+                    <span class="str-cost" id = "str-cost">0</span>
+                  </td>
+                  <td class="racial-traits">
+                    <span class="str-rt" id = "str-rt">0</span>
+                  </td>
+                  <td class="actual-points">
+                    <span class="str-ap" id = "str-ap">0</span>
+                  </td>
+                  <td class="actual-mod">
+                    <span class="str-am" id = "str-am">0</span>
+                  </td>
+                </tr>
+                <!-- dex row -->
+                <tr class="dex-row">
+                  <td class="ability">Dexterity</td>
+                  <td class="points">
+                    <input class="spinner" id="spinnerDEX" name="value" aria-valuemin="7" aria-valuemax="18" autocomplete="off" role="spinbutton" aria-valuenow="11" value="10" type="number">
+                  </td>
+                  <td class="mod">
+                    <span id="dex-mod">0</span>
+                  </td>
+                  <td class="cost">
+                    <span class="dex-cost" id ="dex-cost">0</span>
+                  </td>
+                  <td class="racial-traits">
+                    <span class="dex-rt" id = "dex-rt">0</span>
+                  </td>
+                  <td class="actual-points">
+                    <span class="dex-ap" id = "dex-ap">0</span>
+                  </td>
+                  <td class="actual-mod">
+                    <span class="dex-am" id = "dex-am">0</span>
+                  </td>
+                </tr>
+                <!-- const row -->
+                <tr class="const-row">
+                  <td class="ability">Constitution</td>
+                  <td class="points">
+                    <input class="spinner" id="spinnerCONST" name="value" aria-valuemin="7" aria-valuemax="18" autocomplete="off" role="spinbutton" aria-valuenow="11" value="10" type="number">
+                  </td>
+                  <td class="mod">
+                    <span id="const-mod">0</span>
+                  </td>
+                  <td class="cost">
+                    <span class="const-cost" id = "const-cost">0</span>
+                  </td>
+                  <td class="racial-traits">
+                    <span class="const-rt" id = "const-rt">0</span>
+                  </td>
+                  <td class="actual-points">
+                    <span class="const-ap" id = "const-ap">0</span>
+                  </td>
+                  <td class="actual-mod">
+                    <span class="const-am" id = "const-am">0</span>
+                  </td>
+                </tr>
+                <!-- intel row -->
+                <tr class="int-row">
+                  <td class="ability">Intelligence</td>
+                  <td class="points">
+                    <input class="spinner" id="spinnerINT" name="value" aria-valuemin="7" aria-valuemax="18" autocomplete="off" role="spinbutton" aria-valuenow="11" value="10" type="number">
+                  </td>
+                  <td class="mod">
+                    <span id="int-mod">0</span>
+                  </td>
+                  <td class="cost">
+                    <span class="int-cost" id = "int-cost">0</span>
+                  </td>
+                  <td class="racial-traits">
+                    <span class="int-rt" id = "int-rt">0</span>
+                  </td>
+                  <td class="actual-points">
+                    <span class="int-ap" id = "int-ap">0</span>
+                  </td>
+                  <td class="actual-mod">
+                    <span class="int-am" id = "int-am">0</span>
+                  </td>
+                </tr>
+                <!-- wis row -->
+                <tr class="wis-row">
+                  <td class="ability">Wisdom</td>
+                  <td class="points">
+                    <input class="spinner" id="spinnerWIS" name="value" aria-valuemin="7" aria-valuemax="18" autocomplete="off" role="spinbutton" aria-valuenow="11" value="10" type="number">
+                  </td>
+                  <td class="mod">
+                    <span id="wis-mod">0</span>
+                  </td>
+                  <td class="cost">
+                    <span class="wis-cost" id = "wis-cost">0</span>
+                  </td>
+                  <td class="racial-traits">
+                    <span class="wis-rt" id = "wis-rt">0</span>
+                  </td>
+                  <td class="actual-points">
+                    <span class="wis-ap" id = "wis-ap">0</span>
+                  </td>
+                  <td class="actual-mod">
+                    <span class="wis-am" id = "wis-am">0</span>
+                  </td>
+                </tr>
+                <!-- chars row -->
+                <tr class="char-row">
+                  <td class="ability">Charism</td>
+                  <td class="points">
+                    <input class="spinner" id="spinnerCHAR" name="value" aria-valuemin="7" aria-valuemax="18" autocomplete="off" role="spinbutton" aria-valuenow="11" value="10" type="number">
+                  </td>
+                  <td class="mod">
+                    <span id="char-mod">0</span>
+                  </td>
+                  <td class="cost">
+                    <span class="char-cost" id = "char-cost">0</span>
+                  </td>
+                  <td class="racial-traits">
+                    <span class="char-rt" id = "char-rt">0</span>
+                  </td>
+                  <td class="actual-points">
+                    <span class="char-ap" id = "char-ap">0</span>
+                  </td>
+                  <td class="actual-mod">
+                    <span class="char-am" id = "char-am">0</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <input type="submit" value="Submit">
+
+          </form>
         </div>
       </div>
-    </header>
 
-    <!-- body section -->
-    <main>
-      <div class="wrapper">
-        <img src="" alt="" class="hero-img" />
-        <div class="social">
-          <a href="#"><i class="fab fa-facebook-square"></i></a>
-          <a href="#"><i class="fab fa-instagram-square"></i></a>
-          <a href="#"><i class="fas fa-envelope-square"></i></a>
-        </div>
+    </div>
+  </main>
 
-        <div class="character-creation">
-          <!-- the dropdown list of races -->
-          <div>
-            <label for="race">Choose your race:</label>
-            <select id="race" name="race">
-              <option value="human">Human</option>
-              <option value="elf">Elf</option>
-              <option value="dwarf">Dwarf</option>
-              <option value="orc">Orc</option>
-              <option value="halfling">Halfling</option>
-            </select>
-          </div>
-
-          <div>
-            <form>
-              <ul>
-                <li>
-                  <label for="playername">Player name:</label>
-                  <input type="text" id="playername" name="playername" />
-                </li>
-                <li>
-                  <label for="charactername">Character name:</label>
-                  <input type="text" id="charactername" name="charactername" />
-                </li>
-                <li>
-                  <label for="gender">Gender:</label>
-                  <select id="gender" name="gender">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <!-- pick a random default picture -->
-                    <!-- <option value="other">Other</option> -->
-                  </select>
-                </li>
-                <li>
-                  <label for="avatar">Upload an avatar picture:</label>
-                  <input
-                    type="file"
-                    id="avatar"
-                    name="avatar"
-                    accept="image/png, image/jpeg, image/jpg"
-                  />
-                </li>
-                <li>
-                  <label for="bio">Write your character's bio:</label>
-                  <textarea name="bio" rows="10" cols="30">
-Write your bio here.</textarea
-                  >
-                </li>
-              </ul>
-              <!-- based on the picked race from the dropdown it shows this form -->
-
-              <!-- HUMAN -->
-              <table class="humantable inactive" id="humantable">
-                <tbody>
-                  <!-- header -->
-                  <tr>
-                    <th>Ability</th>
-                    <th>Points</th>
-                    <th>Mod</th>
-                    <th>Cost</th>
-                    <th>Racisl Traits</th>
-                    <th>Actual Points</th>
-                    <th>Actual Mod</th>
-                  </tr>
-                  <!-- str row -->
-                  <tr class="strength-row">
-                    <td class="ability">Strength</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerSTR"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="str-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span id="str-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span id="str-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span id="str-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span id="str-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- dex row -->
-                  <tr class="dex-row">
-                    <td class="ability">Dexterity</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerDEX"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="dex-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="dex-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="dex-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="dex-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="dex-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- const row -->
-                  <tr class="const-row">
-                    <td class="ability">Constitution</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerCONST"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="const-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="const-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="const-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="const-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="const-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- intel row -->
-                  <tr class="int-row">
-                    <td class="ability">Intelligence</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerINT"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="int-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="int-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="int-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="int-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="int-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- wis row -->
-                  <tr class="wis-row">
-                    <td class="ability">Wisdom</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerWIS"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="wis-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="wis-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="wis-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="wis-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="wis-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- chars row -->
-                  <tr class="char-row">
-                    <td class="ability">Charism</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerCHAR"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="char-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="char-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="char-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="char-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="char-am">0</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <!-- ELF -->
-              <table class="elftable inactive" id="elftable">
-                <tbody>
-                  <!-- header -->
-                  <tr>
-                    <th>Ability</th>
-                    <th>Points</th>
-                    <th>Mod</th>
-                    <th>Cost</th>
-                    <th>Racisl Traits</th>
-                    <th>Actual Points</th>
-                    <th>Actual Mod</th>
-                  </tr>
-                  <!-- str row -->
-                  <tr class="strength-row">
-                    <td class="ability">Strength</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerSTR"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="str-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="str-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="str-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="str-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="str-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- dex row -->
-                  <tr class="dex-row">
-                    <td class="ability">Dexterity</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerDEX"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="dex-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="dex-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="dex-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="dex-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="dex-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- const row -->
-                  <tr class="const-row">
-                    <td class="ability">Constitution</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerCONST"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="const-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="const-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="const-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="const-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="const-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- intel row -->
-                  <tr class="int-row">
-                    <td class="ability">Intelligence</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerINT"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="int-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="int-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="int-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="int-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="int-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- wis row -->
-                  <tr class="wis-row">
-                    <td class="ability">Wisdom</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerWIS"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="wis-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="wis-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="wis-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="wis-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="wis-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- chars row -->
-                  <tr class="char-row">
-                    <td class="ability">Charism</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerCHAR"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="char-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="char-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="char-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="char-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="char-am">0</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <!-- DWARF -->
-              <table class="dwarftable inactive" id="dwarftable">
-                <tbody>
-                  <!-- header -->
-                  <tr>
-                    <th>Ability</th>
-                    <th>Points</th>
-                    <th>Mod</th>
-                    <th>Cost</th>
-                    <th>Racisl Traits</th>
-                    <th>Actual Points</th>
-                    <th>Actual Mod</th>
-                  </tr>
-                  <!-- str row -->
-                  <tr class="strength-row">
-                    <td class="ability">Strength</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerSTR"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="str-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="str-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="str-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="str-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="str-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- dex row -->
-                  <tr class="dex-row">
-                    <td class="ability">Dexterity</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerDEX"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="dex-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="dex-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="dex-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="dex-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="dex-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- const row -->
-                  <tr class="const-row">
-                    <td class="ability">Constitution</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerCONST"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="const-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="const-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="const-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="const-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="const-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- intel row -->
-                  <tr class="int-row">
-                    <td class="ability">Intelligence</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerINT"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="int-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="int-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="int-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="int-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="int-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- wis row -->
-                  <tr class="wis-row">
-                    <td class="ability">Wisdom</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerWIS"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="wis-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="wis-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="wis-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="wis-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="wis-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- chars row -->
-                  <tr class="char-row">
-                    <td class="ability">Charism</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerCHAR"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="char-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="char-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="char-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="char-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="char-am">0</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <!-- ORC -->
-              <table class="orctable inactive" id="orctable">
-                <tbody>
-                  <!-- header -->
-                  <tr>
-                    <th>Ability</th>
-                    <th>Points</th>
-                    <th>Mod</th>
-                    <th>Cost</th>
-                    <th>Racisl Traits</th>
-                    <th>Actual Points</th>
-                    <th>Actual Mod</th>
-                  </tr>
-                  <!-- str row -->
-                  <tr class="strength-row">
-                    <td class="ability">Strength</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerSTR"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="str-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span id="str-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="str-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="str-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="str-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- dex row -->
-                  <tr class="dex-row">
-                    <td class="ability">Dexterity</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerDEX"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="dex-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="dex-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="dex-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="dex-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="dex-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- const row -->
-                  <tr class="const-row">
-                    <td class="ability">Constitution</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerCONST"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="const-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="const-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="const-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="const-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="const-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- intel row -->
-                  <tr class="int-row">
-                    <td class="ability">Intelligence</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerINT"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="int-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="int-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="int-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="int-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="int-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- wis row -->
-                  <tr class="wis-row">
-                    <td class="ability">Wisdom</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerWIS"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="wis-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="wis-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="wis-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="wis-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="wis-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- chars row -->
-                  <tr class="char-row">
-                    <td class="ability">Charism</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerCHAR"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="char-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="char-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="char-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="char-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="char-am">0</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <!-- HALFLING -->
-              <table class="halflingtable inactive" id="halflingtable">
-                <tbody>
-                  <!-- header -->
-                  <tr>
-                    <th>Ability</th>
-                    <th>Points</th>
-                    <th>Mod</th>
-                    <th>Cost</th>
-                    <th>Racisl Traits</th>
-                    <th>Actual Points</th>
-                    <th>Actual Mod</th>
-                  </tr>
-                  <!-- str row -->
-                  <tr class="strength-row">
-                    <td class="ability">Strength</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerSTR"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="str-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="str-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="str-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="str-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="str-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- dex row -->
-                  <tr class="dex-row">
-                    <td class="ability">Dexterity</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerDEX"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="dex-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="dex-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="dex-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="dex-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="dex-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- const row -->
-                  <tr class="const-row">
-                    <td class="ability">Constitution</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerCONST"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="const-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="const-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="const-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="const-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="const-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- intel row -->
-                  <tr class="int-row">
-                    <td class="ability">Intelligence</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerINT"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="int-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="int-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="int-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="int-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="int-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- wis row -->
-                  <tr class="wis-row">
-                    <td class="ability">Wisdom</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerWIS"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="wis-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="wis-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="wis-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="wis-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="wis-am">0</span>
-                    </td>
-                  </tr>
-                  <!-- chars row -->
-                  <tr class="char-row">
-                    <td class="ability">Charism</td>
-                    <td class="points">
-                      <input
-                        class="spinner"
-                        id="spinnerCHAR"
-                        name="value"
-                        aria-valuemin="7"
-                        aria-valuemax="18"
-                        autocomplete="off"
-                        role="spinbutton"
-                        aria-valuenow="11"
-                        value="10"
-                        type="number"
-                      />
-                    </td>
-                    <td class="mod">
-                      <span id="char-mod">0</span>
-                    </td>
-                    <td class="cost">
-                      <span class="char-cost">0</span>
-                    </td>
-                    <td class="racial-traits">
-                      <span class="char-rt">0</span>
-                    </td>
-                    <td class="actual-points">
-                      <span class="char-ap">0</span>
-                    </td>
-                    <td class="actual-mod">
-                      <span class="char-am">0</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <input type="submit" value="Submit" />
-            </form>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <!-- footer section -->
-    <footer>
-      <div class="wrapper">
-        <h4>Made by</h4>
-        <p>icons from <a href="https://fontawesome.com/">Font Awesome</a></p>
-      </div>
-    </footer>
-    <script src="app.js"></script>
-  </body>
+  <!-- footer section -->
+  <footer>
+    <div class="wrapper">
+      <h4>Made by</h4>
+      <p>icons from <a href="https://fontawesome.com/">Font Awesome</a></p>
+    </div>
+  </footer>
+  <script src = "app.js"></script>
+</body>
 </html>

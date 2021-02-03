@@ -7,8 +7,10 @@
 
 /////////////Strength Row Elements////////
 //Input
+var TotalPoints = 20;
 var strInput = document.getElementById('spinnerSTR');
 //Mod
+console.log(strInput);
 var strMod = document.getElementById('str-mod');
 //Cost
 var strCost = document.getElementById('str-cost');
@@ -51,7 +53,7 @@ conAp.textContent = conInput.value;
 var conAm = document.getElementById('const-am');
 var conAm = conMod.textContent;
 
-/*
+
 /////////////Intelligence Row Elements////////
 //Input
 var intInput = document.getElementById('spinnerINT');
@@ -87,38 +89,55 @@ var wisAm = wisMod.textContent;
 
 /////////////Charisma Row Elements////////
 //Input
-var chaInput = document.getElementById('spinnerCHA');
+var chaInput = document.getElementById('spinnerCHAR');
 //Mod
-var  chaMod = document.getElementById('cha-mod');
+var  chaMod = document.getElementById('char-mod');
 //Cost
-var chaCost = document.getElementById('cha-cost');
-var chaRace = document.getElementById('cha-rt');
+var chaCost = document.getElementById('char-cost');
+var chaRace = document.getElementById('char-rt');
 //Actual Points
-var wisAp = document.getElementById('cha-ap');
-wisAp.textContent = wisInput.value;
+var chaAp = document.getElementById('char-ap');
+chaAp.textContent = chaInput.value;
 //Actual Mod
-var chaAm = document.getElementById('cha-am');
+var chaAm = document.getElementById('char-am');
 var chaAm = chaMod.textContent;
-*/
+
 var RaceMod;
 var abilityMod;
 
+var currStr;
+var currDex;
 function handleAbilityInput(event){
-
     //updateRow(strAp,)
-    var val = this.value;
-    console.log(this);
     event.preventDefault();
-    if(this.id = "spinnerSTR"){
-    updateRow(val,strMod,strAp,strCost)
+    var val = event.target.value;
+    console.log(val);
+    console.log(event.target.id);
+    
+    if(event.target.id === "spinnerSTR"){
+        updateRow(val,strMod,strAp,strCost)
+        
     }
 
-   else if(this.id = "spinnerDEX"){
+    else if(event.target.id === "spinnerDEX"){
         updateRow(val,dexMod,dexAp,dexCost)
-        }
-    else if(this.id = "spinnerCONST"){
-            updateRow(val,constMod,constAp,constCost)
-            }
+    }
+
+    else if(event.target.id === "spinnerCONST"){
+        updateRow(val,constMod,constAp,constCost)
+    }
+
+    else if(event.target.id === "spinnerINT"){
+        updateRow(val,intMod,intAp,intCost)
+    }
+
+    else if(event.target.id === "spinnerWIS"){
+        updateRow(val,wisMod,wisAp,wisCost)
+    }
+
+    else{
+         updateRow(val,chaMod,chaAp,chaCost)
+    }
     
 }
 
@@ -126,14 +145,16 @@ function updateRow(v, mod,ap,cost){
 
 
     ap.textContent = v; // this.value + Racial Bonus
-     console.log(v);
+     //console.log(v);
     // console.log(strCost.textContent);
      //console.log(this.value == 12);
 
     if(v == 8 || v == 9){
         mod.textContent = -1;
+        //TotalPoints -= 2;
         if(v == 8){
             cost.textContent = -2;
+           
         }
         if(v == 9){
             cost.textContent = -1;
@@ -149,7 +170,7 @@ function updateRow(v, mod,ap,cost){
          }
          if(v == 11){
              cost.textContent = 1;
-             console.log(cost.textContent);
+            // console.log(cost.textContent);
          }
          //pointsSpent += 0;
          //update character class with updatedMod
@@ -165,35 +186,47 @@ function updateRow(v, mod,ap,cost){
 
          //update character class with updated Mod
      }
-     else if(this.value == 14 || this.value == 15){
+     else if(v == 14 || v == 15){
         mod.textContent = 2;
-        if(this.value == 14){
+        if(v == 14){
             cost.textContent = 5;
         }
-        if(this.value == 15){
+        if(v == 15){
             cost.textContent = 7;
         }
         //update character class with updated Mod
      }
-     else if(this.value == 16 || this.value == 17){
+     else if(v == 16 ||v == 17){
          mod.textContent = 3;
-         if(this.value == 16){
+         if(v == 16){
             cost.textContent = 10;
         }
-        if(this.value == 17){
+        if(v == 17){
             cost.textContent = 13;
         }
          //update character class with updated Mod 
      }
 
-     else if(this.value == 18 || this.value == 19){
+     else if(v == 18 || v == 19){
         mod.textContent = 4;
         //update character class with updated Mod
      }
     // strMod.textContent = this.value;
-     console.log(cost);
+     //console.log(cost);
     // strMod.value = this.value;
+    updatePointsAvailable();
 }
 
+function updatePointsAvailable(){
+    var spent  = parseInt(strCost.textContent) + parseInt(dexCost.textContent) + parseInt(conCost.textContent) + parseInt(intCost.textContent) + parseInt(wisCost.textContent) + parseInt(chaCost.textContent);
+    TotalPoints = 20 - spent; 
+    console.log(TotalPoints);
+}
+
+dexInput.addEventListener('input',handleAbilityInput);
 strInput.addEventListener('input',handleAbilityInput);
+conInput.addEventListener('input',handleAbilityInput);
+intInput.addEventListener('input',handleAbilityInput);
+wisInput.addEventListener('input',handleAbilityInput);
+chaInput.addEventListener('input',handleAbilityInput);
 
