@@ -1,6 +1,21 @@
 'use strict'
 //start of variables for race constructor
 var races = ['Human', 'Elf', 'Dwarf', 'Orc', 'Halfling'];
+var modMap = new Map()
+modMap.set(8,-1);
+modMap.set(9,-1);
+modMap.set(10,0);
+modMap.set(11,0);
+modMap.set(12,1);
+modMap.set(13,1);
+modMap.set(14,2);
+modMap.set(15,2);
+modMap.set(16,3);
+modMap.set(17,3);
+modMap.set(18,4);
+modMap.set(19,4);
+modMap.set(20,5);
+
 var str = [1, 0, 0, 0, 0];
 var dex = [1, 2, 0, 2, 2];
 var con = [1, 0, 2, 2, 0];
@@ -33,7 +48,7 @@ var conInput = document.getElementById('spinnerCONST');
 var intInput = document.getElementById('spinnerINT');
 var wisInput = document.getElementById('spinnerWIS');
 var chaInput = document.getElementById('spinnerCHAR');
-
+var pointsAvail = document.getElementById('points-available');
 // var pointsAvailable = document.getElementById('points-available');
 // var pointsAvailable = updatePointsAvailable() || 20;
 var submitButton = document.getElementById('submit');
@@ -143,6 +158,7 @@ submitButton.addEventListener('click', eventListenerSubmitButton);
 /////////////Strength Row Elements////////
 //Input
 var TotalPoints = 20;
+
 var strInput = document.getElementById('spinnerSTR');
 //Mod
 console.log(strInput);
@@ -155,7 +171,7 @@ var strAp = document.getElementById('str-ap');
 strAp.textContent = strInput.value;
 //Actual Mod
 var strAm = document.getElementById('str-am');
-var strAm = strMod.textContent;
+//var strAm = strMod.textContent;
 
 /////////////Dexterity Row Elements////////
 //Input
@@ -170,7 +186,7 @@ var dexAp = document.getElementById('dex-ap');
 dexAp.textContent = dexInput.value;
 //Actual Mod
 var dexAm = document.getElementById('dex-am');
-var dexAm = dexMod.textContent;
+//var dexAm = dexMod.textContent;
 
 
 /////////////Constitution Row Elements////////
@@ -186,7 +202,7 @@ var conAp = document.getElementById('const-ap');
 conAp.textContent = conInput.value;
 //Actual Mod
 var conAm = document.getElementById('const-am');
-var conAm = conMod.textContent;
+//var conAm = conMod.textContent;
 
 
 /////////////Intelligence Row Elements////////
@@ -203,7 +219,7 @@ intAp.textContent = intInput.value;
 
 //Actual Mod
 var intAm = document.getElementById('int-am');
-var intAm = intMod.textContent;
+//var intAm = intMod.textContent;
 
 
 /////////////Wisdom Row Elements////////
@@ -219,7 +235,7 @@ var wisAp = document.getElementById('wis-ap');
 wisAp.textContent = wisInput.value;
 //Actual Mod
 var wisAm = document.getElementById('wis-am');
-wisAm.t = wisMod.textContent;
+//wisAm.t = wisMod.textContent;
 
 
 /////////////Charisma Row Elements////////
@@ -235,30 +251,34 @@ var chaAp = document.getElementById('char-ap');
 chaAp.textContent = chaInput.value;
 //Actual Mod
 var chaAm = document.getElementById('char-am');
-var chaAm = chaMod.textContent;
+//var chaAm = chaMod.textContent;
 
 var RaceMod;
 var abilityMod;
 
-var currStr;
-var currDex;
+updateActualMod();
 function updateActualMod(){
-  // strAm.textContent = strMod.textContent; //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
-  dexAm.textContent = parseInt(dexMod.textContent);
-  // conAm = parseInt(conMod.textContent);
-  // intAm = parseInt(intMod.textContent);
-  // wisAm = parseInt(wisMod.textContent);
-  // chaAm = parseInt(chaMod.textContent);
+    console.log(parseInt(strAp.textContent));
+    console.log(modMap.get(parseInt(strAp.textContent)));
+    console.log(modMap.get(14));
+   strAm.textContent = modMap.get(parseInt(strAp.textContent)); //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
+  dexAm.textContent = modMap.get(parseInt(dexAp.textContent));
+  conAm.textContent = modMap.get(parseInt(conAp.textContent)); //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
+  intAm.textContent = modMap.get(parseInt(intAp.textContent));
+  wisAm.textContent = modMap.get(parseInt(wisAp.textContent)); //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
+  chaAm.textContent = modMap.get(parseInt(chaAp.textContent));
 }
 function handleAbilityInput(event){
   event.preventDefault();
   var val = event.target.value;
   if(event.target.id === "spinnerSTR"){
     updateRow(val,strMod,strAp,strCost);
+    console.log(strAp);
     updateActualMod();
   }
   else if(event.target.id === "spinnerDEX"){
     updateRow(val,dexMod,dexAp,dexCost);
+    
     updateActualMod();
   }
   else if(event.target.id === "spinnerCONST"){
@@ -266,12 +286,15 @@ function handleAbilityInput(event){
   }
   else if(event.target.id === "spinnerINT"){
     updateRow(val,intMod,intAp,intCost)
+    updateActualMod();
   }
   else if(event.target.id === "spinnerWIS"){
     updateRow(val,wisMod,wisAp,wisCost)
+    updateActualMod();
   }
   else{
     updateRow(val,chaMod,chaAp,chaCost)
+    updateActualMod();
   }
 }
 
@@ -332,6 +355,8 @@ function updateRow(v, mod, ap, cost){
 function updatePointsAvailable(){
     var spent  = parseInt(strCost.textContent) + parseInt(dexCost.textContent) + parseInt(conCost.textContent) + parseInt(intCost.textContent) + parseInt(wisCost.textContent) + parseInt(chaCost.textContent);
     TotalPoints = 20 - spent; 
+    console.log(pointsAvail);
+    pointsAvail.textContent = 20 - spent;
     return TotalPoints;
 }
 
