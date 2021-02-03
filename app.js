@@ -38,9 +38,9 @@ var chaInput = document.getElementById('spinnerCHAR');
 // var pointsAvailable = updatePointsAvailable() || 20;
 var submitButton = document.getElementById('submit');
 
-function Player(playerName){
+function Player(playerName, characters){
   this.playerName = playerName;
-  this.characters = [];
+  this.characters = characters || [];
 }
 
 function Race(race, str, dex, con, int, wis, cha){
@@ -135,6 +135,8 @@ function eventListenerSubmitButton(event){
   var userChar = new Character(characterName.value, charRace, gender, avatar, bio, stats);
   player.characters.push(userChar);
   console.log(player);
+  var stringObject = JSON.stringify(player);
+  localStorage.setItem('player', stringObject);
 }
 submitButton.addEventListener('click', eventListenerSubmitButton);
 
@@ -242,24 +244,22 @@ var abilityMod;
 
 var currStr;
 var currDex;
-function updateActualMod(){
+// function updateActualMod(){
   // strAm.textContent = strMod.textContent; //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
-  dexAm.textContent = parseInt(dexMod.textContent);
+  // dexAm.textContent = parseInt(dexMod.textContent);
   // conAm = parseInt(conMod.textContent);
   // intAm = parseInt(intMod.textContent);
   // wisAm = parseInt(wisMod.textContent);
   // chaAm = parseInt(chaMod.textContent);
-}
+// }
 function handleAbilityInput(event){
   event.preventDefault();
   var val = event.target.value;
   if(event.target.id === "spinnerSTR"){
     updateRow(val,strMod,strAp,strCost);
-    updateActualMod();
   }
   else if(event.target.id === "spinnerDEX"){
     updateRow(val,dexMod,dexAp,dexCost);
-    updateActualMod();
   }
   else if(event.target.id === "spinnerCONST"){
     updateRow(val,conMod,conAp,conCost)
