@@ -230,7 +230,11 @@ table td.points {
   top: 25rem;
   right: 2rem;
 }
-
+.hp-sheet {
+  top: 13rem;
+  left: 17rem;
+  font-size: 2rem;
+}
 .bio-sheet {
   width: 9rem;
   top: 9.5rem;
