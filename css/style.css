@@ -63,6 +63,64 @@ header .social a:hover {
   color: white;
 }
 
+.hero-img {
+  display: block;
+  width: 75%;
+  margin: 1rem auto;
+}
+
+main .social {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.character-creation {
+  margin: 2rem auto;
+  width: 80%;
+}
+
+.character-creation input,
+.character-creation select,
+.character-creation textarea {
+  background-color: lightgray;
+  padding: 0.25rem 1rem;
+  border: 2px solid #aaa;
+  margin: 0.25rem 0;
+  width: 80%;
+}
+
+.character-creation form ul {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(1, auto);
+  margin-bottom: 1.5rem;
+}
+
+.character-creation form ul li {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}
+
+.character-creation form ul label {
+  display: block;
+}
+
+.character-creation table {
+  width: 100%;
+}
+
+table td {
+  text-align:right;
+}
+
+table td.ability {
+  text-align: left;
+}
+
+table td.points {
+  width: 8rem;
+}
+
 .background-sheet {
   width: 600px;
   height: 800px;
