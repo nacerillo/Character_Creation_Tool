@@ -158,6 +158,7 @@ submitButton.addEventListener('click', eventListenerSubmitButton);
 /////////////Strength Row Elements////////
 //Input
 var TotalPoints = 20;
+
 var strInput = document.getElementById('spinnerSTR');
 //Mod
 console.log(strInput);
