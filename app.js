@@ -272,9 +272,10 @@ function eventListenerSubmitButton(event){//when submit is clicked, gathers info
       }                                                                                                                                //
       var playerInfo = getPlayerInfo();                                                                                                //
       console.log(playerInfo);                                                                                                         //
-      var stats = getStats();                                                                                                          //
+      var stats = getStats();
+      var genderType = gender.value                                                                                                          //
       var bioForChar = bio.textContent;                                                                                                //
-      var newUserChar = new Character(characterName.value, charRace, charClass, gender, avatar.value, bioForChar, stats);              //
+      var newUserChar = new Character(characterName.value, charRace, charClass, genderType, avatar.value, bioForChar, stats);              //
       playerInfo.characters.push(newUserChar);                                                                                         //
       var stringObject = JSON.stringify(playerInfo);                                                                                   //
       localStorage.setItem(playerName.value, stringObject);                                                                            //
