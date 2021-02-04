@@ -32,7 +32,8 @@ var selectedClass = (classElement.value);
 var playerName = document.getElementById('playername');
 var characterName = document.getElementById('charactername');
 var gender = (document.getElementById('gender').value);
-var avatar = (document.getElementById('avatar').value);
+var avatar = document.getElementById('avatar');
+var selectedAvatar = avatar.value;
 var bio = (document.getElementById('bio').value);
 var strRace = document.getElementById('str-rt');
 var dexRace = document.getElementById('dex-rt');
@@ -52,6 +53,13 @@ var conInput = document.getElementById('spinnerCONST');
 var intInput = document.getElementById('spinnerINT');
 var wisInput = document.getElementById('spinnerWIS');
 var chaInput = document.getElementById('spinnerCHAR');
+var strAm = document.getElementById('str-am');
+var dexAm = document.getElementById('dex-am');
+var conAm = document.getElementById('const-am');
+var intAm = document.getElementById('int-am');
+var wisAm = document.getElementById('wis-am');
+var chaAm = document.getElementById('char-am');
+
 var pointsAvail = document.getElementById('points-available');
 // var pointsAvailable = document.getElementById('points-available');
 // var pointsAvailable = updatePointsAvailable() || 20;
@@ -63,7 +71,7 @@ function Player(playerName, characters){
 }
 
 function Class(c, h){
-  this.class = c;
+  this.name = c;
   this.hp = h;
   Class.allClasses.push(this);
 };
@@ -134,8 +142,16 @@ function forRaceListener(event){
   }
   updateActualPoints();
 }
+
+function forAvatarListener(event){
+  event.preventDefault();
+  selectedAvatar = event.target.value;
+  return selectedAvatar;
+}
 classElement.addEventListener('click', forClassListener);
 race.addEventListener('click', forRaceListener);
+avatar.addEventListener('change', forAvatarListener);
+console.log(selectedAvatar);
 
 function updateActualPoints(){
   strAp.textContent = parseInt(strInput.value) + parseInt(chaRace.textContent);
@@ -145,15 +161,26 @@ function updateActualPoints(){
   wisAp.textContent = parseInt(wisInput.value) + parseInt(wisRace.textContent);
   chaAp.textContent = parseInt(chaInput.value) + parseInt(chaRace.textContent);
 }
+console.log(strAm.textContent);
 
 function getStats(){
+  console.log('test');
   var str = parseInt(strAp.textContent);
   var dex = parseInt(dexAp.textContent);
   var con = parseInt(conAp.textContent);
   var int = parseInt(intAp.textContent);
   var wis = parseInt(wisAp.textContent);
   var cha = parseInt(chaAp.textContent);
-  var stats = [str, dex, con, int, wis, cha];
+  console.log(strAm);
+  
+  var strAm = parseInt(strAm.textContent);
+  var dexAm = parseInt(dexAm.textContent);
+  var conAm = parseInt(conAm.textContent);
+  var intAm = parseInt(intAm.textContent);
+  var wisAm = parseInt(wisAm.textContent);
+  var chaAm = parseInt(chaAm.textContent);
+  console.log('test3');
+  var stats = [str, dex, con, int, wis, cha, strAm, dexAm, conAm, intAm, wisAm, chaAm];
   return stats;
 }
 
