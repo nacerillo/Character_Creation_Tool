@@ -3,6 +3,13 @@
 var races = ['Human', 'Elf', 'Dwarf', 'Orc', 'Halfling'];
 var classes = ['Fighter', 'Ranger', 'Druid', 'Cleric', 'Wizard', 'Rogue'];
 var hp = [10, 10, 8, 8, 6, 8];
+var str = [1, 0, 0, 0, 0];
+var dex = [1, 2, 0, 2, 2];
+var con = [1, 0, 2, 2, 0];
+var int = [1, 2, 0, 0, 0];
+var wis = [1, 0, 2, 0, 0];
+var cha = [1, 0, 0, 0, 2];
+//end of variables for race constructor
 var modMap = new Map();
 modMap.set(8,-1);
 modMap.set(9,-1);
@@ -17,14 +24,6 @@ modMap.set(17,3);
 modMap.set(18,4);
 modMap.set(19,4);
 modMap.set(20,5);
-
-var str = [1, 0, 0, 0, 0];
-var dex = [1, 2, 0, 2, 2];
-var con = [1, 0, 2, 2, 0];
-var int = [1, 2, 0, 0, 0];
-var wis = [1, 0, 2, 0, 0];
-var cha = [1, 0, 0, 0, 2];
-//end of variables for race constructor
 var race = document.getElementById('race');
 var selectedRace = (race.value).toLowerCase();
 var classElement = document.getElementById('class');
@@ -198,10 +197,6 @@ function getStats(){
   return stats;
 }
 
-function checkIfCharacterExistsAlready(){
-
-}
-
 function getLocalStorageInfo(x){
   var reObjectify = localStorage.getItem(x);
   var productsFromStorage = JSON.parse(reObjectify);
@@ -293,17 +288,12 @@ chaAp.textContent = chaInput.value;
 
 updateActualMod();
 function updateActualMod(){
-    console.log(parseInt(strAp.textContent));
-    console.log(modMap.get(parseInt(strAp.textContent)));
-    console.log(modMap.get(14));
   strAm.textContent = modMap.get(parseInt(strAp.textContent)); //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
   dexAm.textContent = modMap.get(parseInt(dexAp.textContent));
   conAm.textContent = modMap.get(parseInt(conAp.textContent)); //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
   intAm.textContent = modMap.get(parseInt(intAp.textContent));
   wisAm.textContent = modMap.get(parseInt(wisAp.textContent)); //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
   chaAm.textContent = modMap.get(parseInt(chaAp.textContent));
-  console.log(conAm.textContent);
-  console.log(conAp);
 }
 
 function handleAbilityInput(event){
