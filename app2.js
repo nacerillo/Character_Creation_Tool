@@ -1,4 +1,5 @@
 'use strict'
+//elements on the html that we want to populate are here
 var strSheet = document.getElementById('str-sheet');
 var dexSheet = document.getElementById('dex-sheet');
 var conSheet = document.getElementById('con-sheet');
@@ -15,9 +16,9 @@ var raceSheet = document.getElementById('race-sheet');
 var avatarSheet = document.getElementById('avatar-sheet');
 var playerPick = document.getElementById('player-pick');
 var characterPick = document.getElementById('player-char');
+//end of elements that we want to populate
 
-
-function getLocalStorageInfo(x){
+function getLocalStorageInfo(x){//this gets the stored characters for a particular user
   var reObjectify = localStorage.getItem(x);
   var productsFromStorage = JSON.parse(reObjectify);
   return productsFromStorage;
@@ -25,22 +26,22 @@ function getLocalStorageInfo(x){
 var playerInfoArray = [];
 
 var arrayOfKeys = Object.keys(localStorage);
-for (var i = 0; i < arrayOfKeys.length; i++){
+for (var i = 0; i < arrayOfKeys.length; i++){//pushes all users in an array
   playerInfoArray.push(arrayOfKeys[i]);
 }
-for (var i = 0; i < playerInfoArray.length; i++){
+for (var i = 0; i < playerInfoArray.length; i++){//creates an html option element for each user in the playerInfoArray 
   var option = document.createElement('option');
   option.textContent = playerInfoArray[i];
   playerPick.appendChild(option);
 }
 
-function removeOptions(parentElement){
+function removeOptions(parentElement){//removes the options from a dropdown selection list
   while (parentElement.firstChild){
     parentElement.removeChild(parentElement.firstChild);
   }
 }
 
-function forPlayerPick(event){
+function forPlayerPick(event){//when the event happens, it gets the data from the user that was selected, and makes dropdown options for the character select
   event.preventDefault();
   var nombre = getLocalStorageInfo(event.target.value);
   console.log(nombre.characters);
@@ -59,7 +60,7 @@ playerPick.addEventListener('change', forPlayerPick);
 
 
 
-function updateFields(x){
+function updateFields(x){//gets the character info for selected player, and pushes the characters into an array. then updates all fields with various character attributes
   x.preventDefault();
   var playerChars = getLocalStorageInfo(playerPick.value);
   var characters = []
