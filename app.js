@@ -59,8 +59,27 @@ var conAm = document.getElementById('const-am');
 var intAm = document.getElementById('int-am');
 var wisAm = document.getElementById('wis-am');
 var chaAm = document.getElementById('char-am');
+var strMod = document.getElementById('str-mod');
+var dexMod = document.getElementById('dex-mod');
+var conMod = document.getElementById('const-mod');
+var intMod = document.getElementById('int-mod');
+var  wisMod = document.getElementById('wis-mod');
+var  chaMod = document.getElementById('char-mod');
+
+var strCost = document.getElementById('str-cost');
+var dexCost = document.getElementById('dex-cost');
+var conCost = document.getElementById('const-cost');
+var intCost = document.getElementById('int-cost');
+var wisCost = document.getElementById('wis-cost');
+var chaCost = document.getElementById('char-cost');
+//var  wisMod = document.getElementById('wis-mod');
+//Cost
+
+
+//Cost
 
 var pointsAvail = document.getElementById('points-available');
+
 // var pointsAvailable = document.getElementById('points-available');
 // var pointsAvailable = updatePointsAvailable() || 20;
 var submitButton = document.getElementById('submit');
@@ -298,102 +317,20 @@ submitButton.addEventListener('click', eventListenerSubmitButton);
 //Input
 var TotalPoints = 20;
 
-var strInput = document.getElementById('spinnerSTR');
+//var strInput = document.getElementById('spinnerSTR');
 //Mod
 console.log(strInput);
-var strMod = document.getElementById('str-mod');
-//Cost
-var strCost = document.getElementById('str-cost');
-var strRace = document.getElementById('str-rt');
+
+//var strRace = document.getElementById('str-rt');
 //Actual Points
-var strAp = document.getElementById('str-ap');
+//var strAp = document.getElementById('str-ap');
 strAp.textContent = strInput.value;
-//Actual Mod
-var strAm = document.getElementById('str-am');
-//var strAm = strMod.textContent;
-
-/////////////Dexterity Row Elements////////
-//Input
-var dexInput = document.getElementById('spinnerDEX');
-//Mod
-var dexMod = document.getElementById('dex-mod');
-//Cost
-var dexCost = document.getElementById('dex-cost');
-var dexRace = document.getElementById('dex-rt');
-//Actual Points
-var dexAp = document.getElementById('dex-ap');
 dexAp.textContent = dexInput.value;
-//Actual Mod
-var dexAm = document.getElementById('dex-am');
-//var dexAm = dexMod.textContent;
-
-
-/////////////Constitution Row Elements////////
-//Input
-var conInput = document.getElementById('spinnerCONST');
-//Mod
-var conMod = document.getElementById('const-mod');
-//Cost
-var conCost = document.getElementById('const-cost');
-var conRace = document.getElementById('const-rt');
-//Actual Points
-var conAp = document.getElementById('const-ap');
 conAp.textContent = conInput.value;
-//Actual Mod
-var conAm = document.getElementById('const-am');
-//var conAm = conMod.textContent;
-
-
-/////////////Intelligence Row Elements////////
-//Input
-var intInput = document.getElementById('spinnerINT');
-//Mod
-var  intMod = document.getElementById('int-mod');
-//Cost
-var intCost = document.getElementById('int-cost');
-var intRace = document.getElementById('int-rt');
-//Actual Points
-var intAp = document.getElementById('int-ap');
 intAp.textContent = intInput.value;
-
-//Actual Mod
-var intAm = document.getElementById('int-am');
-//var intAm = intMod.textContent;
-
-
-/////////////Wisdom Row Elements////////
-//Input
-var wisInput = document.getElementById('spinnerWIS');
-//Mod
-var  wisMod = document.getElementById('wis-mod');
-//Cost
-var wisCost = document.getElementById('wis-cost');
-var wisRace = document.getElementById('wis-rt');
-//Actual Points
-var wisAp = document.getElementById('wis-ap');
 wisAp.textContent = wisInput.value;
-//Actual Mod
-var wisAm = document.getElementById('wis-am');
-//wisAm.t = wisMod.textContent;
-
-
-/////////////Charisma Row Elements////////
-//Input
-var chaInput = document.getElementById('spinnerCHAR');
-//Mod
-var  chaMod = document.getElementById('char-mod');
-//Cost
-var chaCost = document.getElementById('char-cost');
-var chaRace = document.getElementById('char-rt');
-//Actual Points
-var chaAp = document.getElementById('char-ap');
 chaAp.textContent = chaInput.value;
-//Actual Mod
-var chaAm = document.getElementById('char-am');
-//var chaAm = chaMod.textContent;
 
-var RaceMod;
-var abilityMod;
 
 updateActualMod();
 function updateActualMod(){
