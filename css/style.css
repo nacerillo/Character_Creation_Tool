@@ -264,6 +264,60 @@ table td.points {
   right: 33.5rem;
   font-size: 1.37rem;
 }
+
+.about-us {
+  display: grid;
+  grid-template-columns: repeat(1, auto);
+  grid-template-rows: repeat(1, auto);
+  grid-row-gap: 2rem;
+}
+
+.about-us h2 {
+  font-size: 3rem;
+}
+
+.about-us .fa-linkedin {
+  font-size: 2rem;
+}
+
+.about-us .grid-wrapper {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: repeat(1, auto);
+  margin: 2rem 0;
+}
+
+.about-us {
+  margin: 4rem 0;
+}
+
+.about-us img {
+  display: block;
+  width: 50%;
+  border-radius: 25%;
+  margin: 0 auto;
+}
+
+.about-us .text {
+  margin: 0 auto;
+}
+
+.about-us h3 {
+  font-size: 2rem;
+  display: inline-block;
+  margin-right: 1rem;
+  margin-bottom: 2rem;
+}
+
+.about-us li {
+  font-size: 1.05rem;
+  line-height: 1rem;
+  margin-bottom: 1rem;
+  list-style: disc;
+  margin-left: 1rem;
+}
+
+
 footer {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #7E6B7D;
