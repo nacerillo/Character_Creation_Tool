@@ -63,39 +63,24 @@ var strMod = document.getElementById('str-mod');
 var dexMod = document.getElementById('dex-mod');
 var conMod = document.getElementById('const-mod');
 var intMod = document.getElementById('int-mod');
-var  wisMod = document.getElementById('wis-mod');
-var  chaMod = document.getElementById('char-mod');
-
+var wisMod = document.getElementById('wis-mod');
+var chaMod = document.getElementById('char-mod');
 var strCost = document.getElementById('str-cost');
 var dexCost = document.getElementById('dex-cost');
 var conCost = document.getElementById('const-cost');
 var intCost = document.getElementById('int-cost');
 var wisCost = document.getElementById('wis-cost');
 var chaCost = document.getElementById('char-cost');
-//var  wisMod = document.getElementById('wis-mod');
-//Cost
 
-
-//Cost
+var TotalPoints = 20;
 
 var pointsAvail = document.getElementById('points-available');
 
-// var pointsAvailable = document.getElementById('points-available');
-// var pointsAvailable = updatePointsAvailable() || 20;
 var submitButton = document.getElementById('submit');
-
-var PlayerList = function(list){
-  this.list = list
-}
 
 function Player(playerName, characters){
   this.playerName = playerName;
   this.characters = characters || [];
-}
-var playerList = new PlayerList([]);
-
-PlayerList.prototype.storeMembers = function (object){
-  this.list.push(object);
 }
 
 function Class(c, h){
@@ -170,18 +155,6 @@ function forRaceListener(event){
   }
   updateActualPoints();
 }
-
-// function forTextInputs(event){
-//   // for (let i = 0; i < event.target.length; i++) {
-//   //   let num = parseInt(n[i]);
-//   //   console.log(num);
-//   //   console.log(typeof num);
-//     if (!isNaN(event)) {
-//       playerName.reset();   // Keeper in reset
-//       return;
-//     }
-//   }
-// }
 
 function forAvatarListener(event){
   event.preventDefault();
@@ -311,26 +284,12 @@ function eventListenerSubmitButton(event){
 
 submitButton.addEventListener('click', eventListenerSubmitButton);
 
-
-
-/////////////Strength Row Elements////////
-//Input
-var TotalPoints = 20;
-
-//var strInput = document.getElementById('spinnerSTR');
-//Mod
-console.log(strInput);
-
-//var strRace = document.getElementById('str-rt');
-//Actual Points
-//var strAp = document.getElementById('str-ap');
 strAp.textContent = strInput.value;
 dexAp.textContent = dexInput.value;
 conAp.textContent = conInput.value;
 intAp.textContent = intInput.value;
 wisAp.textContent = wisInput.value;
 chaAp.textContent = chaInput.value;
-
 
 updateActualMod();
 function updateActualMod(){
@@ -352,12 +311,10 @@ function handleAbilityInput(event){
   var val = event.target.value;
   if(event.target.id === "spinnerSTR"){
     updateRow(val,strMod,strAp,strCost);
-    console.log(strAp);
     updateActualMod();
   }
   else if(event.target.id === "spinnerDEX"){
     updateRow(val,dexMod,dexAp,dexCost);
-    
     updateActualMod();
   }
   else if(event.target.id === "spinnerCONST"){
@@ -436,11 +393,11 @@ function updateRow(v, mod, ap, cost){
 }
 
 function updatePointsAvailable(){
-    var spent  = parseInt(strCost.textContent) + parseInt(dexCost.textContent) + parseInt(conCost.textContent) + parseInt(intCost.textContent) + parseInt(wisCost.textContent) + parseInt(chaCost.textContent);
-    TotalPoints = 20 - spent; 
-    console.log(pointsAvail);
-    pointsAvail.textContent = 20 - spent;
-    return TotalPoints;
+  var spent  = parseInt(strCost.textContent) + parseInt(dexCost.textContent) + parseInt(conCost.textContent) + parseInt(intCost.textContent) + parseInt(wisCost.textContent) + parseInt(chaCost.textContent);
+  TotalPoints = 20 - spent; 
+  console.log(pointsAvail);
+  pointsAvail.textContent = 20 - spent;
+  return TotalPoints;
 }
 
 dexInput.addEventListener('input',handleAbilityInput);

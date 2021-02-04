@@ -88,5 +88,5 @@ function updateFields(x){
     }
   }
 }
-characterPick.addEventListener('change', updateFields)
-// console.log(playerInfo.characters[0].stats[1]);
+characterPick.addEventListener('change', updateFields);
+
