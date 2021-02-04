@@ -53,11 +53,14 @@ nav {
 }
 
 nav a {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'New Rocker';
   margin-right: 3rem;
   text-decoration: none;
   color: white;
   padding: 0.5rem;
+  background-color: #7E6B7D;
+  border-radius: 4px;
+  filter: drop-shadow(15px 10px 9px #535353);
 }
 nav a:hover {
   color: #EC7B72;
@@ -174,14 +177,14 @@ table td.points {
 
 .background-sheet span {
   font-family: 'Shadows Into Light', cursive;
-  background-color: #dedede;
+  /* background-color: #dedede; */
   padding: .25rem;
   position: absolute;
   border-radius: 2px;
 }
 
 .player-name-sheet {
-  top: 3rem;
+  top: 3.35rem;
   right: 4rem;
 }
 
@@ -191,7 +194,7 @@ table td.points {
 }
 
 .gender-sheet {
-  top: 3rem;
+  top: 3.35rem;
   right: 12rem;
 }
 
@@ -207,40 +210,24 @@ table td.points {
   top: 9.5rem;
   right: 2.4rem;
   font-size: 0.7rem;
+  background-color: #dedede;;
 }
-
 .race-sheet {
-  top: 4.6rem;
+  top: 4.9rem;
   right: 17rem;
 }
 
 .class-sheet {
-  top: 3rem;
+  top: 3.35rem;
   right: 17rem;
 }
 
-.gender-sheet {
-  top: 3rem;
-  right: 12rem;
+.hp-sheet {
+  top: 13.3rem;
+  left: 17rem;
+  font-size: 2.1rem;
 }
 
-.avatar-sheet {
-  width: 10rem;
-  position: absolute;
-  top: 25rem;
-  right: 2rem;
-}
-.hp-sheet {
-  top: 13rem;
-  left: 17rem;
-  font-size: 2rem;
-}
-.bio-sheet {
-  width: 9rem;
-  top: 9.5rem;
-  right: 2.4rem;
-  font-size: 0.7rem;
-}
 .str-sheet {
   position:absolute;
   top: 10.25rem;
