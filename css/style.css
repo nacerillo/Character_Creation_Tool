@@ -266,7 +266,7 @@ table td.points {
 }
 
 .about-us {
-  margin: 4rem 0;
+  margin: 2rem 0 4rem 0;
   display: grid;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: repeat(2, auto);
@@ -274,8 +274,9 @@ table td.points {
   grid-column-gap: 1rem;
 }
 
-.about-us h2 {
+.wrapper h2 {
   font-size: 3rem;
+  margin-top: 2rem;
 }
 
 .about-us .fa-linkedin {
