@@ -206,15 +206,38 @@ function getStats(){
   return stats;
 }
 
+function checkIfCharacterExistsAlready(){
+
+}
+
+function getLocalStorageInfo(x){
+  var reObjectify = localStorage.getItem(x);
+  var productsFromStorage = JSON.parse(reObjectify);
+  return productsFromStorage;
+}
+
 function eventListenerSubmitButton(event){
   event.preventDefault();
-  console.log();
-  console.log(typeof playerName.value);
   var arrayOfKeys = Object.keys(localStorage);
-  console.log(arrayOfKeys);
 
   for (var i = 0; i < arrayOfKeys.length; i++){
-    if (playerName.value == arrayOfKeys[i]){
+    if (playerName.value == arrayOfKeys[i]){//this checks if there is already a character with the selected name in local storage
+      var playerCharData = getLocalStorageInfo(arrayOfKeys[i]);                                                                 //
+      var playerChars = [];                                                           //if there is a character with that name, //
+      for (var i = 0; i < playerCharData.characters.length; i++){                     //it breaks out of the function           //
+        playerChars.push(playerCharData.characters[i]);                                                                         //
+      }                                                                                                                         //
+      for (var i = 0; i < playerChars.length; i ++){                                                                            //
+        if (characterName.value == playerChars[i].name){                                                                        //
+          alert('You already have a character with this name! Please use another name');                                        //
+          return;                                                                                                               //
+        }                                                                                                                       //
+      }                                                  /////////////////////////////////////////////////////////////////////////                                                                       
+      if (TotalPoints < 0){
+        alert('You have gone over your spending limit, please reallocate points!');
+        return;
+      }
+
       for (var i = 0; i < races.length; i++){
         if (selectedRace == (races[i]).toLowerCase()){
           var charRace = Race.allRaces[i];
@@ -236,14 +259,6 @@ function eventListenerSubmitButton(event){
       return;
     }
   }
-    // if (getPlayerInfo(playerName.value) !== null) {      // Checks Data for storage  members cache 
-    //   var recenetMembers = getPlayerInfo(playerName.value);
-    //       console.log(recenetMembers, "From Storage");
-    //       var membersList = recenetMembers;
-    //       console.log(membersList);
-    //       playerList.storeMembers(membersList);
-    // }
-
 
     for (var i = 0; i < races.length; i++){
       if (selectedRace == (races[i]).toLowerCase()){
@@ -254,6 +269,10 @@ function eventListenerSubmitButton(event){
       if (selectedClass == classes[i]){
         var charClass = Class.allClasses[i];
       }
+    }
+    if (TotalPoints < 0){
+      alert('You have gone over your spending limit, please reallocate points!');
+      return;
     }
     
     var player = new Player(playerName.value);
@@ -472,7 +491,10 @@ function updateRow(v, mod, ap, cost){
   else if(v == 18 || v == 19){
       mod.textContent = 4;
      }
-  updatePointsAvailable();
+  else if (v == 20){
+    return;
+  }
+  TotalPoints = updatePointsAvailable();
   updateActualPoints();
 }
 
