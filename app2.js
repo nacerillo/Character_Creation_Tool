@@ -11,6 +11,8 @@ var genderSheet = document.getElementById('gender-sheet');
 var bioSheet = document.getElementById('bio-sheet');
 var classSheet = document.getElementById('class-sheet');
 var hpSheet = document.getElementById('hp-sheet');
+var raceSheet = document.getElementById('race-sheet');
+var avatarSheet = document.getElementById('avatar-sheet');
 
 
 
@@ -36,7 +38,9 @@ function updateFields(){
   genderSheet.textContent = playerInfo.characters[0].gender;
   bioSheet.textContent = playerInfo.characters[0].bio;
   classSheet.textContent = playerInfo.characters[0].class.name;
-  hpSheet.textContent = parseInt(playerInfo.characters[0].class.hp) + ;
+  raceSheet.textContent = playerInfo.characters[0].race.name;
+  hpSheet.textContent = parseInt(playerInfo.characters[0].class.hp) + parseInt(playerInfo.characters[0].stats[8]);
+  avatarSheet.src = playerInfo.characters[0].avatar;
   return playerInfo;
 }
 updateFields();
