@@ -28,6 +28,27 @@ modMap.set(19,4);
 modMap.set(20,5);
 //end mod map for table logic
 
+
+var costMap = new Map();
+costMap.set(8,-2);
+costMap.set(9,-1);
+costMap.set(10,0);
+costMap.set(11,1);
+costMap.set(12,2);
+costMap.set(13,3);
+costMap.set(14,5);
+costMap.set(15,7);
+costMap.set(16,10);
+costMap.set(17,13);
+costMap.set(18,18);
+
+var str = [1, 0, 0, 0, 0];
+var dex = [1, 2, 0, 2, 2];
+var con = [1, 0, 2, 2, 0];
+var int = [1, 2, 0, 0, 0];
+var wis = [1, 0, 2, 0, 0];
+var cha = [1, 0, 0, 0, 2];
+//end of variables for race constructor
 //start of input field elements for character constructor
 var race = document.getElementById('race');
 var selectedRace = (race.value).toLowerCase();
@@ -292,6 +313,7 @@ function eventListenerSubmitButton(event){//when submit is clicked, gathers info
 
 submitButton.addEventListener('click', eventListenerSubmitButton);
 
+//set Actual Points equal to user's Inputed Values
 strAp.textContent = strInput.value;
 dexAp.textContent = dexInput.value;
 conAp.textContent = conInput.value;
@@ -300,6 +322,11 @@ wisAp.textContent = wisInput.value;
 chaAp.textContent = chaInput.value;
 
 updateActualMod();
+
+//this functions updates values displayed in the Actual Modifier Column
+//the Actual Modifier is dependent on the associtaed point value to it
+// In this function, we take in the Actual Points for each ability, and use
+// them as a key to grab the associated modifier value from the map. 
 function updateActualMod(){
   strAm.textContent = modMap.get(parseInt(strAp.textContent)); //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
   dexAm.textContent = modMap.get(parseInt(dexAp.textContent));
@@ -309,7 +336,10 @@ function updateActualMod(){
   chaAm.textContent = modMap.get(parseInt(chaAp.textContent));
 }
 
+//This function is triggered each time a user updates any Ability Score
 function handleAbilityInput(event){
+
+//run an update on the row values and modifiers for whichever Ability Input has been targetted. 
   event.preventDefault();
   var val = event.target.value;
   if(event.target.id === "spinnerSTR"){
@@ -338,63 +368,18 @@ function handleAbilityInput(event){
   }
 }
 
+
+//Updates what is displayed in the Mod and Cost columns, and calls on the updateAvailablePoints
+// and updateActualPoints
 function updateRow(v, mod, ap, cost){
   ap.textContent = v;
-  if(v == 8 || v == 9){
-    mod.textContent = -1;
-      if(v == 8){
-        cost.textContent = -2;
-      }
-      if(v == 9){
-        cost.textContent = -1;
-      }
-    }
-  else if(v== 10 || v== 11){
-      mod.textContent = 0;
-        if(v == 10){
-          cost.textContent = 0;
-        }
-        if(v == 11){
-          cost.textContent = 1;
-        }
-     }
-  else if(v == 12 || v == 13){
-      mod.textContent = 1;
-        if(v == 12){
-          cost.textContent = 2;
-        }
-        if(v == 13){
-          cost.textContent = 3;
-        }
-     }
-  else if(v == 14 || v == 15){
-      mod.textContent = 2;
-        if(v == 14){
-          cost.textContent = 5;
-        }
-        if(v == 15){
-          cost.textContent = 7;
-        }
-     }
-  else if(v == 16 ||v == 17){
-        mod.textContent = 3;
-         if(v == 16){
-          cost.textContent = 10;
-        }
-        if(v == 17){
-            cost.textContent = 13;
-        }
-     }
-  else if(v == 18 || v == 19){
-      mod.textContent = 4;
-     }
-  else if (v == 20){
-    return;
-  }
+  cost.textContent = costMap.get(parseInt(v))
+  mod.textContent = modMap.get(parseInt(v))
   TotalPoints = updatePointsAvailable();
   updateActualPoints();
 }
 
+//Returns the differecne between maximum points (20) and what has been spent 
 function updatePointsAvailable(){
   var spent  = parseInt(strCost.textContent) + parseInt(dexCost.textContent) + parseInt(conCost.textContent) + parseInt(intCost.textContent) + parseInt(wisCost.textContent) + parseInt(chaCost.textContent);
   TotalPoints = 20 - spent; 
@@ -403,6 +388,7 @@ function updatePointsAvailable(){
   return TotalPoints;
 }
 
+//calls evenListenr to each of the Input Rows
 dexInput.addEventListener('input',handleAbilityInput);
 strInput.addEventListener('input',handleAbilityInput);
 conInput.addEventListener('input',handleAbilityInput);
