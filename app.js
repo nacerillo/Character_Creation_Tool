@@ -31,10 +31,10 @@ var classElement = document.getElementById('class');
 var selectedClass = (classElement.value);
 var playerName = document.getElementById('playername');
 var characterName = document.getElementById('charactername');
-var gender = (document.getElementById('gender').value);
+var gender = document.getElementById('gender');
 var avatar = document.getElementById('avatar');
 var selectedAvatar = avatar.textContent;
-var bio = (document.getElementById('bio').value);
+var bio = document.getElementById('bio');
 var strRace = document.getElementById('str-rt');
 var dexRace = document.getElementById('dex-rt');
 var conRace = document.getElementById('const-rt');
@@ -228,7 +228,8 @@ function eventListenerSubmitButton(event){
       var playerInfo = getPlayerInfo();
       console.log(playerInfo);
       var stats = getStats();
-      var newUserChar = new Character(characterName.value, charRace, charClass, gender, avatar.value, bio, stats);
+      var bioForChar = bio.textContent;
+      var newUserChar = new Character(characterName.value, charRace, charClass, gender, avatar.value, bioForChar, stats);
       playerInfo.characters.push(newUserChar);
       var stringObject = JSON.stringify(playerInfo);
       localStorage.setItem(playerName.value, stringObject);
@@ -257,7 +258,9 @@ function eventListenerSubmitButton(event){
     
     var player = new Player(playerName.value);
     var stats = getStats();
-    var userChar = new Character(characterName.value, charRace, charClass, gender, avatar.value, bio, stats);
+    var bioInstance = bio.value;
+    var genderInstance = gender.value;
+    var userChar = new Character(characterName.value, charRace, charClass, genderInstance, avatar.value, bioInstance, stats);
     player.characters.push(userChar);
     playerList.storeMembers(player);
 
@@ -266,10 +269,6 @@ function eventListenerSubmitButton(event){
     
     var arrayOfKeys = Object.keys(localStorage);
     console.log(arrayOfKeys);
-    
-    // var stringObject2 = JSON.stringify(playerList);
-    // localStorage.setItem(playerName.value, stringObject2);
-  
 }
 
 submitButton.addEventListener('click', eventListenerSubmitButton);
