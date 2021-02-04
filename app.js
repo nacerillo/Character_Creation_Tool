@@ -26,8 +26,6 @@ modMap.set(17,3);
 modMap.set(18,4);
 modMap.set(19,4);
 modMap.set(20,5);
-//end mod map for table logic
-
 
 var costMap = new Map();
 costMap.set(8,-2);
@@ -41,14 +39,8 @@ costMap.set(15,7);
 costMap.set(16,10);
 costMap.set(17,13);
 costMap.set(18,18);
+//end mod map for table logic
 
-var str = [1, 0, 0, 0, 0];
-var dex = [1, 2, 0, 2, 2];
-var con = [1, 0, 2, 2, 0];
-var int = [1, 2, 0, 0, 0];
-var wis = [1, 0, 2, 0, 0];
-var cha = [1, 0, 0, 0, 2];
-//end of variables for race constructor
 //start of input field elements for character constructor
 var race = document.getElementById('race');
 var selectedRace = (race.value).toLowerCase();
