@@ -196,7 +196,7 @@ function forAvatarListener(event){//changes the selected avatar to be the link p
 }
 
 classElement.addEventListener('click', forClassListener);//adds event listeners to the appropriate html element
-race.addEventListener('click', forRaceListener);//adds event listeners to the appropriate html element
+race.addEventListener('change', forRaceListener);//adds event listeners to the appropriate html element
 
 function updateActualPoints(){//updates the actual points column based on input
   strAp.textContent = parseInt(strInput.value) + parseInt(chaRace.textContent);
