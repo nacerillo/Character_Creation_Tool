@@ -65,9 +65,18 @@ var pointsAvail = document.getElementById('points-available');
 // var pointsAvailable = updatePointsAvailable() || 20;
 var submitButton = document.getElementById('submit');
 
+var PlayerList = function(list){
+  this.list = list
+}
+
 function Player(playerName, characters){
   this.playerName = playerName;
   this.characters = characters || [];
+}
+var playerList = new PlayerList([]);
+
+PlayerList.prototype.storeMembers = function (object){
+  this.list.push(object);
 }
 
 function Class(c, h){
@@ -143,6 +152,18 @@ function forRaceListener(event){
   updateActualPoints();
 }
 
+// function forTextInputs(event){
+//   // for (let i = 0; i < event.target.length; i++) {
+//   //   let num = parseInt(n[i]);
+//   //   console.log(num);
+//   //   console.log(typeof num);
+//     if (!isNaN(event)) {
+//       playerName.reset();   // Keeper in reset
+//       return;
+//     }
+//   }
+// }
+
 function forAvatarListener(event){
   event.preventDefault();
   selectedAvatar = event.target.value;
@@ -160,17 +181,19 @@ function updateActualPoints(){
   wisAp.textContent = parseInt(wisInput.value) + parseInt(wisRace.textContent);
   chaAp.textContent = parseInt(chaInput.value) + parseInt(chaRace.textContent);
 }
-console.log(strAm.textContent);
 
+function getPlayerInfo(){
+  var reObjectify = localStorage.getItem(playerName.value);
+  var productsFromStorage = JSON.parse(reObjectify);
+  return productsFromStorage;
+}
 function getStats(){
-  console.log('test');
   var str = parseInt(strAp.textContent);
   var dex = parseInt(dexAp.textContent);
   var con = parseInt(conAp.textContent);
   var int = parseInt(intAp.textContent);
   var wis = parseInt(wisAp.textContent);
   var cha = parseInt(chaAp.textContent);
-  console.log(modMap.get(parseInt(strAp.textContent)));
   
   strAm.textContent = modMap.get(parseInt(strAp.textContent)); //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
   dexAm.textContent = modMap.get(parseInt(dexAp.textContent));
@@ -179,32 +202,76 @@ function getStats(){
   wisAm.textContent = modMap.get(parseInt(wisAp.textContent)); //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
   chaAm.textContent = modMap.get(parseInt(chaAp.textContent));
   var mods = [strAm.textContent, dexAm.textContent, conAm.textContent, intAm.textContent, wisAm.textContent, chaAm.textContent]
-  console.log('test3');
   var stats = [str, dex, con, int, wis, cha, mods[0], mods[1], mods[2], mods[3], mods[4], mods[5]];
   return stats;
 }
 
 function eventListenerSubmitButton(event){
   event.preventDefault();
-  for (var i = 0; i < races.length; i++){
-    if (selectedRace == (races[i]).toLowerCase()){
-      var charRace = Race.allRaces[i];
+  console.log();
+  console.log(typeof playerName.value);
+  var arrayOfKeys = Object.keys(localStorage);
+  console.log(arrayOfKeys);
+
+  for (var i = 0; i < arrayOfKeys.length; i++){
+    if (playerName.value == arrayOfKeys[i]){
+      for (var i = 0; i < races.length; i++){
+        if (selectedRace == (races[i]).toLowerCase()){
+          var charRace = Race.allRaces[i];
+        }
+      }
+      for (var i = 0; i < classes.length; i ++){
+        if (selectedClass == classes[i]){
+          var charClass = Class.allClasses[i];
+        }
+      }
+      var playerInfo = getPlayerInfo();
+      console.log(playerInfo);
+      var stats = getStats();
+      var newUserChar = new Character(characterName.value, charRace, charClass, gender, avatar.value, bio, stats);
+      playerInfo.characters.push(newUserChar);
+      var stringObject = JSON.stringify(playerInfo);
+      localStorage.setItem(playerName.value, stringObject);
+      return;
     }
   }
-  for (var i = 0; i < classes.length; i ++){
-    if (selectedClass == classes[i]){
-      var charClass = Class.allClasses[i];
+    // if (getPlayerInfo(playerName.value) !== null) {      // Checks Data for storage  members cache 
+    //   var recenetMembers = getPlayerInfo(playerName.value);
+    //       console.log(recenetMembers, "From Storage");
+    //       var membersList = recenetMembers;
+    //       console.log(membersList);
+    //       playerList.storeMembers(membersList);
+    // }
+
+
+    for (var i = 0; i < races.length; i++){
+      if (selectedRace == (races[i]).toLowerCase()){
+        var charRace = Race.allRaces[i];
+      }
     }
-  }
-  var player = new Player(playerName.value)
-  var stats = getStats();
-  console.log(avatar.value);
-  var userChar = new Character(characterName.value, charRace, charClass, gender, avatar.value, bio, stats);
-  player.characters.push(userChar);
-  console.log(player);
-  var stringObject = JSON.stringify(player);
-  localStorage.setItem('player', stringObject);
+    for (var i = 0; i < classes.length; i ++){
+      if (selectedClass == classes[i]){
+        var charClass = Class.allClasses[i];
+      }
+    }
+    
+    var player = new Player(playerName.value);
+    var stats = getStats();
+    var userChar = new Character(characterName.value, charRace, charClass, gender, avatar.value, bio, stats);
+    player.characters.push(userChar);
+    playerList.storeMembers(player);
+
+    var stringObject = JSON.stringify(player);
+    localStorage.setItem(playerName.value, stringObject);
+    
+    var arrayOfKeys = Object.keys(localStorage);
+    console.log(arrayOfKeys);
+    
+    // var stringObject2 = JSON.stringify(playerList);
+    // localStorage.setItem(playerName.value, stringObject2);
+  
 }
+
 submitButton.addEventListener('click', eventListenerSubmitButton);
 
 
