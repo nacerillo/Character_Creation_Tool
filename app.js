@@ -10,6 +10,8 @@ var int = [1, 2, 0, 0, 0];
 var wis = [1, 0, 2, 0, 0];
 var cha = [1, 0, 0, 0, 2];
 //end of variables for race constructor
+
+//mod map for table logic
 var modMap = new Map();
 modMap.set(8,-1);
 modMap.set(9,-1);
@@ -24,6 +26,9 @@ modMap.set(17,3);
 modMap.set(18,4);
 modMap.set(19,4);
 modMap.set(20,5);
+//end mod map for table logic
+
+//start of input field elements for character constructor
 var race = document.getElementById('race');
 var selectedRace = (race.value).toLowerCase();
 var classElement = document.getElementById('class');
@@ -34,6 +39,9 @@ var gender = document.getElementById('gender');
 var avatar = document.getElementById('avatar');
 var selectedAvatar = avatar.textContent;
 var bio = document.getElementById('bio');
+//end of input field elements for character constructor
+
+//start of table element locations
 var strRace = document.getElementById('str-rt');
 var dexRace = document.getElementById('dex-rt');
 var conRace = document.getElementById('const-rt');
@@ -70,6 +78,7 @@ var conCost = document.getElementById('const-cost');
 var intCost = document.getElementById('int-cost');
 var wisCost = document.getElementById('wis-cost');
 var chaCost = document.getElementById('char-cost');
+//end of table element locations
 
 var TotalPoints = 20;
 
@@ -77,19 +86,19 @@ var pointsAvail = document.getElementById('points-available');
 
 var submitButton = document.getElementById('submit');
 
-function Player(playerName, characters){
+function Player(playerName, characters){//constructor for each different user
   this.playerName = playerName;
   this.characters = characters || [];
 }
 
-function Class(c, h){
+function Class(c, h){//constructor for making different classes
   this.name = c;
   this.hp = h;
   Class.allClasses.push(this);
 };
 Class.allClasses = [];
 
-function Race(race, str, dex, con, int, wis, cha){
+function Race(race, str, dex, con, int, wis, cha){//constructor for making different races
   this.name = race;
   this.str = str;
   this.dex = dex;
@@ -101,7 +110,7 @@ function Race(race, str, dex, con, int, wis, cha){
 };
 Race.allRaces = [];
 
-function Character(cName, race, c, gender, avatar, bio, stats){
+function Character(cName, race, c, gender, avatar, bio, stats){//constructor for each new character made by a player
   this.name = cName;
   this.race = race;
   this.class = c;
@@ -113,6 +122,7 @@ function Character(cName, race, c, gender, avatar, bio, stats){
 }
 Character.allCharacters = [];
 
+//below loops initialize the options for races and classes
 for (var i = 0; i < races.length; i++){
   new Race(races[i], str[i], dex[i], con[i], int[i], wis[i], cha[i]);
 };
@@ -120,6 +130,7 @@ for (var i = 0; i < races.length; i++){
 for (var i = 0; i < classes.length; i++){
   new Class(classes[i], hp[i]);
 }
+//end of loops for initializing options for races and classes
 
 //below is to initialize a value on the table when the page is loaded
 for (var i = 0; i < races.length; i ++){
@@ -132,14 +143,16 @@ for (var i = 0; i < races.length; i ++){
     chaRace.textContent = cha[i];
   }
 }
+//end of initializing values on table
+
 updateActualPoints();
 
-function forClassListener(event){
+function forClassListener(event){//changes the selected class value to be the info for the class that is clicked on
   event.preventDefault();
   selectedClass = event.target.value;
 }
 
-function forRaceListener(event){
+function forRaceListener(event){//changes the selected race value to be the info for the race that is clicked on, and updates the table race info column
   event.preventDefault();
   selectedRace = event.target.value;
   for (var i = 0; i < races.length; i ++){
@@ -155,16 +168,16 @@ function forRaceListener(event){
   updateActualPoints();
 }
 
-function forAvatarListener(event){
+function forAvatarListener(event){//changes the selected avatar to be the link provided
   event.preventDefault();
   selectedAvatar = event.target.value;
   return selectedAvatar;
 }
-classElement.addEventListener('click', forClassListener);
-race.addEventListener('click', forRaceListener);
 
+classElement.addEventListener('click', forClassListener);//adds event listeners to the appropriate html element
+race.addEventListener('click', forRaceListener);//adds event listeners to the appropriate html element
 
-function updateActualPoints(){
+function updateActualPoints(){//updates the actual points column based on input
   strAp.textContent = parseInt(strInput.value) + parseInt(chaRace.textContent);
   dexAp.textContent = parseInt(dexInput.value) + parseInt(dexRace.textContent);
   conAp.textContent = parseInt(conInput.value) + parseInt(conRace.textContent);
@@ -173,12 +186,13 @@ function updateActualPoints(){
   chaAp.textContent = parseInt(chaInput.value) + parseInt(chaRace.textContent);
 }
 
-function getPlayerInfo(){
+function getPlayerInfo(){//gets the player name key from local storage and returns their characters
   var reObjectify = localStorage.getItem(playerName.value);
   var productsFromStorage = JSON.parse(reObjectify);
   return productsFromStorage;
 }
-function getStats(){
+
+function getStats(){//gets the stats from the table
   var str = parseInt(strAp.textContent);
   var dex = parseInt(dexAp.textContent);
   var con = parseInt(conAp.textContent);
@@ -197,15 +211,15 @@ function getStats(){
   return stats;
 }
 
-function getLocalStorageInfo(x){
+function getLocalStorageInfo(x){//gets the player name key form local storage and returns their characters
   var reObjectify = localStorage.getItem(x);
   var productsFromStorage = JSON.parse(reObjectify);
   return productsFromStorage;
 }
 
-function eventListenerSubmitButton(event){
+function eventListenerSubmitButton(event){//when submit is clicked, gathers info from all input fields
   event.preventDefault();
-  var arrayOfKeys = Object.keys(localStorage);
+  var arrayOfKeys = Object.keys(localStorage);//gets all key values from local storage and puts them in an array
 
   for (var i = 0; i < arrayOfKeys.length; i++){
     if (playerName.value == arrayOfKeys[i]){//this checks if there is already a character with the selected name in local storage
@@ -221,55 +235,54 @@ function eventListenerSubmitButton(event){
         }                                                                                                                       //
       }                                                  /////////////////////////////////////////////////////////////////////////                                                                       
       if (TotalPoints < 0){
-        alert('You have gone over your spending limit, please reallocate points!');
+        alert('You have gone over your spending limit, please reallocate points!');// if the character is over their points spending limit, breaks out of the function
         return;
       }
 
-      for (var i = 0; i < races.length; i++){
-        if (selectedRace == (races[i]).toLowerCase()){
-          var charRace = Race.allRaces[i];
-        }
-      }
-      for (var i = 0; i < classes.length; i ++){
-        if (selectedClass == classes[i]){
-          var charClass = Class.allClasses[i];
-        }
-      }
-      var playerInfo = getPlayerInfo();
-      console.log(playerInfo);
-      var stats = getStats();
-      var bioForChar = bio.textContent;
-      var newUserChar = new Character(characterName.value, charRace, charClass, gender, avatar.value, bioForChar, stats);
-      playerInfo.characters.push(newUserChar);
-      var stringObject = JSON.stringify(playerInfo);
-      localStorage.setItem(playerName.value, stringObject);
-      return;
-    }
-  }
-
-    for (var i = 0; i < races.length; i++){
+      for (var i = 0; i < races.length; i++){///////////if the character is a new character, it adds it to the users array of characters
+        if (selectedRace == (races[i]).toLowerCase()){                                                                                 //
+          var charRace = Race.allRaces[i];                                                                                             //
+        }                                                                                                                              //
+      }                                                                                                                                //
+      for (var i = 0; i < classes.length; i ++){                                                                                       //
+        if (selectedClass == classes[i]){                                                                                              //
+          var charClass = Class.allClasses[i];                                                                                         //
+        }                                                                                                                              //
+      }                                                                                                                                //
+      var playerInfo = getPlayerInfo();                                                                                                //
+      console.log(playerInfo);                                                                                                         //
+      var stats = getStats();                                                                                                          //
+      var bioForChar = bio.textContent;                                                                                                //
+      var newUserChar = new Character(characterName.value, charRace, charClass, gender, avatar.value, bioForChar, stats);              //
+      playerInfo.characters.push(newUserChar);                                                                                         //
+      var stringObject = JSON.stringify(playerInfo);                                                                                   //
+      localStorage.setItem(playerName.value, stringObject);                                                                            //
+      return;                                                                                                                          //
+    }                                                                                                                                  //
+  }                                                                                                                                    //
+                                                           //////////////////////////////////////////////////////////////////////////////
+    for (var i = 0; i < races.length; i++){//assigns character race to selected race
       if (selectedRace == (races[i]).toLowerCase()){
         var charRace = Race.allRaces[i];
       }
     }
-    for (var i = 0; i < classes.length; i ++){
+    for (var i = 0; i < classes.length; i ++){//assigns character class to selected class
       if (selectedClass == classes[i]){
         var charClass = Class.allClasses[i];
       }
     }
-    if (TotalPoints < 0){
+    if (TotalPoints < 0){//if youre over the points limit, stops you from adding character to your list of characters
       alert('You have gone over your spending limit, please reallocate points!');
       return;
     }
     
-    var player = new Player(playerName.value);
+    var player = new Player(playerName.value);// if there is no player with that name in storage, makes a new player name key and a new array of characters for them
     var stats = getStats();
     var bioInstance = bio.value;
     var genderInstance = gender.value;
     var userChar = new Character(characterName.value, charRace, charClass, genderInstance, avatar.value, bioInstance, stats);
     player.characters.push(userChar);
-    playerList.storeMembers(player);
-
+    
     var stringObject = JSON.stringify(player);
     localStorage.setItem(playerName.value, stringObject);
     
