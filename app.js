@@ -349,6 +349,7 @@ function eventListenerSubmitButton(event){//when submit is clicked, gathers info
     removeOptions(playerRemove);
     removeOptions(characterRemove);
     initilizeRemoveUser(playerRemove);
+    location.reload();
 }
 
 function forRemovePlayerButton(event){
