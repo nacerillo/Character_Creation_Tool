@@ -37,12 +37,43 @@ header img {
 }
 
 header h1 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'New Rocker', cursive;
   font-size: 2rem;
   margin-right: 3rem;
-  color: white;
-  background-color: black;
+  color: black;
   padding: 0.5rem;
+}
+
+nav {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: center;
+  font-size: 1.25rem;
+}
+
+nav a {
+  font-family: 'New Rocker';
+  margin-right: 3rem;
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem;
+  background-color: #7E6B7D;
+  border-radius: 4px;
+  filter: drop-shadow(15px 10px 9px #535353);
+}
+nav a:hover {
+  color: #EC7B72;
+  background-color: black;
+}
+
+a {
+  color: #BC4062;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #EC7B72;
 }
 
 header .social {
@@ -63,12 +94,74 @@ header .social a:hover {
   color: white;
 }
 
+.hero-img {
+  display: block;
+  width: 75%;
+  margin: 1rem auto;
+}
+
+main .social {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.character-creation {
+  margin: 2rem auto;
+  width: 80%;
+}
+
+.character-creation input,
+.character-creation select,
+.character-creation textarea {
+  background-color: lightgray;
+  padding: 0.25rem 1rem;
+  border: 2px solid #aaa;
+  margin: 0.25rem 0;
+  width: 80%;
+}
+
+.character-creation form ul {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(1, auto);
+  margin-bottom: 1.5rem;
+}
+
+.character-creation form ul li {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}
+
+.character-creation form ul label {
+  display: block;
+}
+
+.character-creation table {
+  width: 100%;
+}
+
+table td {
+  text-align:right;
+}
+
+table td.ability {
+  text-align: left;
+}
+
+table td.points {
+  width: 8rem;
+}
+
+#submit {
+  width: 5rem;
+}
+
 .background-sheet {
   width: 600px;
   height: 800px;
   background-color: lightskyblue;
   display: block;
-  margin: 0 auto;
+  margin: 2rem auto;
   position: relative;
   background: url('assets/character-sheet.png') no-repeat center center;
   background: url('https://content.instructables.com/ORIG/F32/Y0FV/J8F5Q3W5/F32Y0FVJ8F5Q3W5.png') no-repeat center center;
@@ -78,15 +171,20 @@ header .social a:hover {
   background-size: contain;
 }
 
+.player-picker {
+  margin: 1rem 0 2rem 0;
+}
+
 .background-sheet span {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: tomato;
+  font-family: 'Shadows Into Light', cursive;
+  /* background-color: #dedede; */
   padding: .25rem;
   position: absolute;
+  border-radius: 2px;
 }
 
 .player-name-sheet {
-  top: 3rem;
+  top: 3.35rem;
   right: 4rem;
 }
 
@@ -96,7 +194,7 @@ header .social a:hover {
 }
 
 .gender-sheet {
-  top: 3rem;
+  top: 3.35rem;
   right: 12rem;
 }
 
@@ -112,7 +210,114 @@ header .social a:hover {
   top: 9.5rem;
   right: 2.4rem;
   font-size: 0.7rem;
+  background-color: #dedede;;
 }
+.race-sheet {
+  top: 4.9rem;
+  right: 17rem;
+}
+
+.class-sheet {
+  top: 3.35rem;
+  right: 17rem;
+}
+
+.hp-sheet {
+  top: 13.3rem;
+  left: 17rem;
+  font-size: 2.1rem;
+}
+
+.str-sheet {
+  position:absolute;
+  top: 10.25rem;
+  right: 33.5rem;
+  font-size: 1.37rem;
+}
+.dex-sheet {
+  position:absolute;
+  top: 14.7rem;
+  right: 33.5rem;
+  font-size: 1.37rem;
+}
+.con-sheet {
+  position:absolute;
+  top: 19rem;
+  right: 33.5rem;
+  font-size: 1.37rem;
+}
+.int-sheet {
+  position:absolute;
+  top: 23.46rem;
+  right: 33.5rem;
+  font-size: 1.37rem;
+}
+.wis-sheet {
+  position:absolute;
+  top: 27.8rem;
+  right: 33.5rem;
+  font-size: 1.37rem;
+}
+.cha-sheet {
+  position:absolute;
+  top: 32.2rem;
+  right: 33.5rem;
+  font-size: 1.37rem;
+}
+
+.about-us {
+  margin: 2rem 0 4rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+  grid-row-gap: 1rem;
+  grid-column-gap: 1rem;
+}
+
+.wrapper h2 {
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+
+.about-us .fa-linkedin {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.about-us .grid-wrapper {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: repeat(1, auto);
+  margin: 2rem 0;
+}
+
+.about-us img {
+  display: block;
+  width: 75%;
+  border-radius: 25%;
+  margin: 0 auto;
+}
+
+.about-us .text {
+  margin: 0 auto;
+}
+
+.about-us h3 {
+  font-size: 2rem;
+  display: inline-block;
+  margin-right: 1rem;
+  margin-bottom: 0;
+}
+
+.about-us li {
+  font-size: 1.05rem;
+  line-height: 1rem;
+  margin-bottom: 1rem;
+  list-style: disc;
+  margin-left: 1rem;
+}
+
 
 footer {
   font-family: Arial, Helvetica, sans-serif;
@@ -135,4 +340,7 @@ footer a {
 
 footer a:hover {
   color: #BC4062;
+}
+#local-storage-removal{
+  text-align: center;
 }

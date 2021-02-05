@@ -7,7 +7,11 @@
       src="https://kit.fontawesome.com/3d57454b78.js"
       crossorigin="anonymous"
     ></script>
-    <title>Charecter Sheet</title>
+    <title>Charecter Creation</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=New+Rocker&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -16,17 +20,17 @@
     <header>
       <div class="wrapper">
         <div class="logo-area">
-          <img src="assets/logo.png" alt="The logo for Character Creator" class="logo">
           <h1>Character Creator</h1>
         </div>
         <nav>
-          <a href="">Home</a>
-          <a href="">Character Sheet</a>
+          <a href="index.html">Home</a>
+          <a href="index2.html">Character Sheet</a>
+          <a href="index3.html">About The Team</a>
         </nav>
         <div class="social">
-          <a href="#"><i class="fab fa-facebook-square"></i></a>
-          <a href="#"><i class="fab fa-instagram-square"></i></a>
-          <a href="#"><i class="fas fa-envelope-square"></i></a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/nacerillo/Character_Creation_Tool"><i class="fab fa-facebook-square"></i></a>
+          <a href="https://twitter.com/intent/tweet?url=https://github.com/nacerillo/Character_Creation_Tool&text="><i class="fab fa-twitter-square"></i></a>
+          <a href="mailto:&subject=&body=https://github.com/nacerillo/Character_Creation_Tool "><i class="fas fa-envelope-square"></i></a>
         </div>
       </div>
     </header>
@@ -34,11 +38,38 @@
     <main>
       <div class="wrapper">
         <div class="background-sheet">
-          <span class="player-name-sheet" id="player-name-sheet">Xxxx Xxxxxx</span>
-          <span class="character-name-sheet" id="character-name-sheet">Xxxx Xxxxx</span>
+          <div class="player-picker">
+            <label for="player-pick">Pick your Player:</label>
+            <select id="player-pick" name="player-pick">
+              <option value="player-pick">Xxxx</option>
+            </select>
+            <label for="class">Pick your Player's Character:</label>
+            <select id="player-char" name="player-char">
+              <option value="player-char">Xxxx</option>
+            </select>
+          </div>
+          <span class="player-name-sheet" id="player-name-sheet"
+            >Xxxx Xxxxxx</span
+          >
+          <span class="character-name-sheet" id="character-name-sheet"
+            >Xxxx Xxxxx</span
+          >
+          <span class="class-sheet" id="class-sheet">Wizard</span>
+          <span class="race-sheet" id="race-sheet">Human</span>
           <span class="gender-sheet" id="gender-sheet">Male</span>
-          <img class="avatar-sheet" id="avatar-sheet" src="assets/elf-female.jpg" alt="Character Avatar"/>
-          <span class="bio-sheet" id="bio-sheet">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur est repudiandae nam, voluptates quam quae, repellat dolores veritatis molestias accusantium illo excepturi blanditiis quo eaque, tempora suscipit placeat. Aliquid, inventore.</span>
+          <span class="hp-sheet" id="hp-sheet">50</span>
+          <img
+            class="avatar-sheet"
+            id="avatar-sheet"
+            src="assets/elf-female.jpg"
+            alt="Character Avatar"
+          />
+          <span class="bio-sheet" id="bio-sheet"
+            >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur
+            est repudiandae nam, voluptates quam quae, repellat dolores
+            veritatis molestias accusantium illo excepturi blanditiis quo eaque,
+            tempora suscipit placeat. Aliquid, inventore.</span
+          >
           <span class="str-sheet" id="str-sheet">10</span>
           <span class="dex-sheet" id="dex-sheet">10</span>
           <span class="con-sheet" id="con-sheet">10</span>
@@ -51,9 +82,11 @@
     <!-- footer section -->
     <footer>
       <div class="wrapper">
-        <h4>Made by</h4>
+        <p><a href="https://github.com/nacerillo/Character_Creation_Tool">See the Github</a></p>
         <p>icons from <a href="https://fontawesome.com/">Font Awesome</a></p>
+        <p>custom fonts from Google fonts</p>
       </div>
     </footer>
+    <script src="app2.js"></script>
   </body>
 </html>
