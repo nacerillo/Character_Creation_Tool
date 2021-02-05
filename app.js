@@ -376,7 +376,9 @@ function forRemoveCharacterButton(event){
       console.log(s);
       var stringObject = JSON.stringify(s);             
       localStorage.setItem(playerRemove.value, stringObject);
+      //above works great
       var selectedPlayerRemove = getLocalStorageInfo(playerRemove.value);
+      console.log(selectedPlayerRemove);
       removeOptions(characterRemove);
       var initialOption = document.createElement('option');
       initialOption.textContent = 'Xxxx'
@@ -385,12 +387,9 @@ function forRemoveCharacterButton(event){
       var charOptions = document.createElement('option');
       charOptions.textContent = selectedPlayerRemove.characters[i].name;
       characterRemove.appendChild(charOptions);
-      return; 
       }
     }
   }
-
-
 }
 
 playerRemove.addEventListener('change', forRemoveUserEventListener);
