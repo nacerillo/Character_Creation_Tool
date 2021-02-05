@@ -114,7 +114,7 @@ function Class(c, h){//constructor for making different classes
   this.name = c;
   this.hp = h;
   Class.allClasses.push(this);
-};
+}
 Class.allClasses = [];
 
 function Race(race, str, dex, con, int, wis, cha){//constructor for making different races
@@ -126,7 +126,7 @@ function Race(race, str, dex, con, int, wis, cha){//constructor for making diffe
   this.wis = wis;
   this.cha = cha;
   Race.allRaces.push(this);
-};
+}
 Race.allRaces = [];
 
 function Character(cName, race, c, gender, avatar, bio, stats){//constructor for each new character made by a player
@@ -144,7 +144,7 @@ Character.allCharacters = [];
 //below loops initialize the options for races and classes
 for (var i = 0; i < races.length; i++){
   new Race(races[i], str[i], dex[i], con[i], int[i], wis[i], cha[i]);
-};
+}
 
 for (var i = 0; i < classes.length; i++){
   new Class(classes[i], hp[i]);
@@ -218,7 +218,6 @@ function getStats(){//gets the stats from the table
   var int = parseInt(intAp.textContent);
   var wis = parseInt(wisAp.textContent);
   var cha = parseInt(chaAp.textContent);
-  
   strAm.textContent = modMap.get(parseInt(strAp.textContent)); //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
   dexAm.textContent = modMap.get(parseInt(dexAp.textContent));
   conAm.textContent = modMap.get(parseInt(conAp.textContent)); //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
@@ -248,7 +247,7 @@ function initilizeRemoveUser(x){
   }
   removeOptions(x);
   var initialOption = document.createElement('option');
-  initialOption.textContent = 'Xxxx'
+  initialOption.textContent = 'Xxxx';
   x.appendChild(initialOption);
   for (var i = 0; i < removeUserArray.length; i++){//creates an html option element for each user in the playerInfoArray 
     var option = document.createElement('option');
@@ -265,7 +264,7 @@ function forRemoveUserEventListener(event){
   console.log(selectedPlayerRemove);
   removeOptions(characterRemove);
   var initialOption = document.createElement('option');
-  initialOption.textContent = 'Xxxx'
+  initialOption.textContent = 'Xxxx';
   characterRemove.appendChild(initialOption);
   for (var i = 0; i < selectedPlayerRemove.characters.length; i ++){
     var charOptions = document.createElement('option');
