@@ -26,6 +26,8 @@ modMap.set(17,3);
 modMap.set(18,4);
 modMap.set(19,4);
 modMap.set(20,5);
+//end mod map for table logic
+
 
 var costMap = new Map();
 costMap.set(8,-2);
@@ -39,8 +41,14 @@ costMap.set(15,7);
 costMap.set(16,10);
 costMap.set(17,13);
 costMap.set(18,18);
-//end mod map for table logic
 
+var str = [1, 0, 0, 0, 0];
+var dex = [1, 2, 0, 2, 2];
+var con = [1, 0, 2, 2, 0];
+var int = [1, 2, 0, 0, 0];
+var wis = [1, 0, 2, 0, 0];
+var cha = [1, 0, 0, 0, 2];
+//end of variables for race constructor
 //start of input field elements for character constructor
 var race = document.getElementById('race');
 var selectedRace = (race.value).toLowerCase();
@@ -93,12 +101,6 @@ var wisCost = document.getElementById('wis-cost');
 var chaCost = document.getElementById('char-cost');
 //end of table element locations
 
-//for removing player and characters
-var playerRemove = document.getElementById('player-remove');
-var characterRemove = document.getElementById('player-char-remove');
-var playerRemoveButton = document.getElementById('submit-player-removal');
-var playerCharacterRemoveButton = document.getElementById('submit-character-removal');
-//end of removing players and characters
 var TotalPoints = 20;
 
 var pointsAvail = document.getElementById('points-available');
@@ -114,7 +116,7 @@ function Class(c, h){//constructor for making different classes
   this.name = c;
   this.hp = h;
   Class.allClasses.push(this);
-}
+};
 Class.allClasses = [];
 
 function Race(race, str, dex, con, int, wis, cha){//constructor for making different races
@@ -126,7 +128,7 @@ function Race(race, str, dex, con, int, wis, cha){//constructor for making diffe
   this.wis = wis;
   this.cha = cha;
   Race.allRaces.push(this);
-}
+};
 Race.allRaces = [];
 
 function Character(cName, race, c, gender, avatar, bio, stats){//constructor for each new character made by a player
@@ -144,7 +146,7 @@ Character.allCharacters = [];
 //below loops initialize the options for races and classes
 for (var i = 0; i < races.length; i++){
   new Race(races[i], str[i], dex[i], con[i], int[i], wis[i], cha[i]);
-}
+};
 
 for (var i = 0; i < classes.length; i++){
   new Class(classes[i], hp[i]);
@@ -194,7 +196,7 @@ function forAvatarListener(event){//changes the selected avatar to be the link p
 }
 
 classElement.addEventListener('click', forClassListener);//adds event listeners to the appropriate html element
-race.addEventListener('change', forRaceListener);//adds event listeners to the appropriate html element
+race.addEventListener('click', forRaceListener);//adds event listeners to the appropriate html element
 
 function updateActualPoints(){//updates the actual points column based on input
   strAp.textContent = parseInt(strInput.value) + parseInt(chaRace.textContent);
@@ -218,6 +220,7 @@ function getStats(){//gets the stats from the table
   var int = parseInt(intAp.textContent);
   var wis = parseInt(wisAp.textContent);
   var cha = parseInt(chaAp.textContent);
+  
   strAm.textContent = modMap.get(parseInt(strAp.textContent)); //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
   dexAm.textContent = modMap.get(parseInt(dexAp.textContent));
   conAm.textContent = modMap.get(parseInt(conAp.textContent)); //here would go the mod for any racial based stuff, or class based stuff, in addition to the ability mod. same applies for each row.
@@ -228,49 +231,11 @@ function getStats(){//gets the stats from the table
   var stats = [str, dex, con, int, wis, cha, mods[0], mods[1], mods[2], mods[3], mods[4], mods[5]];
   return stats;
 }
-function removeOptions(parentElement){//removes the options from a dropdown selection list
-  while (parentElement.firstChild){
-    parentElement.removeChild(parentElement.firstChild);
-  }
-}
 
 function getLocalStorageInfo(x){//gets the player name key form local storage and returns their characters
   var reObjectify = localStorage.getItem(x);
   var productsFromStorage = JSON.parse(reObjectify);
   return productsFromStorage;
-}
-function initilizeRemoveUser(x){
-  var removeUserArray = [];
-  var arrayOfKeys = Object.keys(localStorage);
-  for (var i = 0; i < arrayOfKeys.length; i++){//pushes all users in an array
-    removeUserArray.push(arrayOfKeys[i]);
-  }
-  removeOptions(x);
-  var initialOption = document.createElement('option');
-  initialOption.textContent = 'Xxxx';
-  x.appendChild(initialOption);
-  for (var i = 0; i < removeUserArray.length; i++){//creates an html option element for each user in the playerInfoArray 
-    var option = document.createElement('option');
-    option.textContent = removeUserArray[i];
-    x.appendChild(option);
-  }
-}
-
-initilizeRemoveUser(playerRemove);
-
-function forRemoveUserEventListener(event){
-  event.preventDefault();
-  var selectedPlayerRemove = getLocalStorageInfo(event.target.value);
-  console.log(selectedPlayerRemove);
-  removeOptions(characterRemove);
-  var initialOption = document.createElement('option');
-  initialOption.textContent = 'Xxxx';
-  characterRemove.appendChild(initialOption);
-  for (var i = 0; i < selectedPlayerRemove.characters.length; i ++){
-    var charOptions = document.createElement('option');
-    charOptions.textContent = selectedPlayerRemove.characters[i].name;
-    characterRemove.appendChild(charOptions);
-  }
 }
 
 function eventListenerSubmitButton(event){//when submit is clicked, gathers info from all input fields
@@ -307,10 +272,9 @@ function eventListenerSubmitButton(event){//when submit is clicked, gathers info
       }                                                                                                                                //
       var playerInfo = getPlayerInfo();                                                                                                //
       console.log(playerInfo);                                                                                                         //
-      var stats = getStats();
-      var genderType = gender.value                                                                                                          //
+      var stats = getStats();                                                                                                          //
       var bioForChar = bio.textContent;                                                                                                //
-      var newUserChar = new Character(characterName.value, charRace, charClass, genderType, avatar.value, bioForChar, stats);              //
+      var newUserChar = new Character(characterName.value, charRace, charClass, gender, avatar.value, bioForChar, stats);              //
       playerInfo.characters.push(newUserChar);                                                                                         //
       var stringObject = JSON.stringify(playerInfo);                                                                                   //
       localStorage.setItem(playerName.value, stringObject);                                                                            //
@@ -345,56 +309,8 @@ function eventListenerSubmitButton(event){//when submit is clicked, gathers info
     
     var arrayOfKeys = Object.keys(localStorage);
     console.log(arrayOfKeys);
-    removeOptions(playerRemove);
-    removeOptions(characterRemove);
-    initilizeRemoveUser(playerRemove);
-    location.reload();
 }
 
-function forRemovePlayerButton(event){
-  event.preventDefault();
-  var playerToRemove = playerRemove.value
-  var removeUserArray = [];
-  var arrayOfKeys = Object.keys(localStorage);
-  for (var i = 0; i < arrayOfKeys.length; i++){//pushes all users in an array
-    removeUserArray.push(arrayOfKeys[i]);
-  }
-  for (var i = 0; i < removeUserArray.length; i++){
-    if (removeUserArray[i] == playerToRemove){
-      console.log(removeUserArray[i]);
-      localStorage.removeItem(removeUserArray[i]);
-    }
-  }
-  initilizeRemoveUser(playerRemove);
-}
-function forRemoveCharacterButton(event){
-  event.preventDefault();
-  var s = getLocalStorageInfo(playerRemove.value);
-  for (var i = 0; i < s.characters.length; i++){
-    if (characterRemove.value == s.characters[i].name){
-      s.characters.splice(s.characters.indexOf(s.characters[i]), 1);
-      console.log(s);
-      var stringObject = JSON.stringify(s);             
-      localStorage.setItem(playerRemove.value, stringObject);
-      //above works great
-      var selectedPlayerRemove = getLocalStorageInfo(playerRemove.value);
-      console.log(selectedPlayerRemove);
-      removeOptions(characterRemove);
-      var initialOption = document.createElement('option');
-      initialOption.textContent = 'Xxxx'
-      characterRemove.appendChild(initialOption);
-      for (var i = 0; i < selectedPlayerRemove.characters.length; i ++){
-      var charOptions = document.createElement('option');
-      charOptions.textContent = selectedPlayerRemove.characters[i].name;
-      characterRemove.appendChild(charOptions);
-      }
-    }
-  }
-}
-
-playerRemove.addEventListener('change', forRemoveUserEventListener);
-playerRemoveButton.addEventListener('click', forRemovePlayerButton);
-playerCharacterRemoveButton.addEventListener('click', forRemoveCharacterButton);
 submitButton.addEventListener('click', eventListenerSubmitButton);
 
 //set Actual Points equal to user's Inputed Values
@@ -480,3 +396,8 @@ intInput.addEventListener('input',handleAbilityInput);
 wisInput.addEventListener('input',handleAbilityInput);
 chaInput.addEventListener('input',handleAbilityInput);
 
+/**
+ * 
+ *making a virtual spread sheet that allows the user to 
+ 
+ */
